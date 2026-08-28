@@ -1,0 +1,3746 @@
+.dashboard-page {
+    min-height: 100vh;
+    display: flex;
+
+    background:
+        radial-gradient(circle at 75% 10%,
+            rgba(24, 100, 190, 0.08),
+            transparent 30%),
+        #050912;
+
+    color: #eef4ff;
+}
+
+/* ================================
+   SIDEBAR
+================================ */
+
+.dashboard-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 250px;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 28px 18px;
+
+    border-right: 1px solid rgba(117, 143, 180, 0.15);
+
+    background: rgba(5, 10, 19, 0.92);
+
+    backdrop-filter: blur(20px);
+}
+
+.dashboard-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 0 12px 30px;
+}
+
+.dashboard-brand strong {
+    display: block;
+
+    font-size: 14px;
+    letter-spacing: 1.8px;
+}
+
+.dashboard-brand small {
+    display: block;
+
+    margin-top: 4px;
+
+    color: #66758d;
+    font-size: 10px;
+}
+
+.mini-logo {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(47, 164, 255, 0.5);
+    border-radius: 11px;
+
+    color: #38b8ff;
+
+    background:
+        linear-gradient(145deg,
+            rgba(31, 150, 255, 0.2),
+            rgba(45, 74, 255, 0.08));
+
+    box-shadow: 0 0 20px rgba(33, 145, 255, 0.12);
+}
+
+.mini-logo span {
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   START NEW ANALYSIS SIDEBAR BUTTON
+   ========================================================= */
+
+.start-analysis-button {
+    width: 100%;
+    min-height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 2px 0 4px;
+    padding: 0 17px;
+    border: 1px solid rgba(91, 92, 226, 0.35);
+    border-radius: 10px;
+    background: rgba(91, 92, 226, 0.08);
+    color: var(--accent-primary);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.start-analysis-button:hover {
+    background: rgba(91, 92, 226, 0.15);
+    border-color: rgba(91, 92, 226, 0.5);
+    color: var(--accent-primary);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(91, 92, 226, 0.12);
+}
+
+.start-analysis-button:focus,
+.start-analysis-button:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(91, 92, 226, 0.15);
+}
+
+.start-analysis-button:active {
+    transform: translateY(0);
+}
+
+/* Navigation */
+
+.dashboard-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    padding: 12px 14px;
+
+    border-radius: 9px;
+
+    color: #7f8da3;
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 500;
+
+    transition: 0.2s ease;
+}
+
+.nav-item:hover {
+    color: #dbe7f8;
+    background: rgba(61, 109, 166, 0.09);
+}
+
+.nav-item.active {
+    color: #eaf5ff;
+
+    background:
+        linear-gradient(90deg,
+            rgba(28, 146, 236, 0.17),
+            rgba(28, 146, 236, 0.04));
+
+    border: 1px solid rgba(43, 154, 238, 0.15);
+}
+
+.nav-icon {
+    width: 20px;
+
+    text-align: center;
+
+    color: #54b9ff;
+    font-size: 17px;
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+}
+
+.privacy-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 13px;
+
+    border: 1px solid rgba(83, 110, 145, 0.17);
+    border-radius: 10px;
+
+    background: rgba(16, 28, 44, 0.4);
+}
+
+.privacy-badge>span {
+    width: 27px;
+    height: 27px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    color: #40c9a1;
+    background: rgba(40, 200, 160, 0.09);
+}
+
+.privacy-badge strong,
+.privacy-badge small {
+    display: block;
+}
+
+.privacy-badge strong {
+    font-size: 10px;
+    color: #c6d4e7;
+}
+
+.privacy-badge small {
+    margin-top: 3px;
+
+    color: #637289;
+    font-size: 9px;
+}
+
+.logout-button {
+    width: 100%;
+
+    margin-top: 12px;
+    padding: 11px 14px;
+
+    border: none;
+    border-radius: 8px;
+
+    color: #69778d;
+    background: transparent;
+
+    text-align: left;
+
+    font-size: 12px;
+}
+
+.logout-button:hover {
+    color: #d2dcea;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+/* ================================
+   MAIN
+================================ */
+
+.dashboard-main {
+    width: calc(100% - 250px);
+
+    margin-left: 250px;
+
+    padding: 42px 55px;
+}
+
+/* Header */
+
+.dashboard-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    margin-bottom: 38px;
+}
+
+.eyebrow {
+    margin: 0 0 8px;
+
+    color: #379fff;
+
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.7px;
+}
+
+.dashboard-header h1 {
+    margin: 0;
+
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: -0.7px;
+}
+
+.header-subtitle {
+    margin: 8px 0 0;
+
+    color: #77859a;
+    font-size: 13px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.notification {
+    position: relative;
+
+    margin-right: 8px;
+
+    color: #718096;
+    font-size: 20px;
+}
+
+.notification i {
+    position: absolute;
+    top: 1px;
+    right: -1px;
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #2aa9ff;
+}
+
+.avatar {
+    width: 39px;
+    height: 39px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(58, 164, 255, 0.35);
+    border-radius: 50%;
+
+    color: #76c7ff;
+
+    background: rgba(33, 118, 191, 0.14);
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.profile-info strong,
+.profile-info span {
+    display: block;
+}
+
+.profile-info strong {
+    color: #cdd8e8;
+    font-size: 12px;
+}
+
+.profile-info span {
+    margin-top: 3px;
+
+    color: #65738a;
+    font-size: 10px;
+}
+
+/* ================================
+   NEW ANALYSIS
+================================ */
+
+.new-analysis-card {
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 30px 34px;
+
+    border: 1px solid rgba(59, 157, 230, 0.24);
+    border-radius: 16px;
+
+    background:
+        radial-gradient(circle at 90% 50%,
+            rgba(32, 108, 201, 0.15),
+            transparent 35%),
+        linear-gradient(130deg,
+            rgba(15, 36, 61, 0.85),
+            rgba(7, 17, 30, 0.88));
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.18);
+}
+
+.new-analysis-card::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 3px;
+    height: 100%;
+
+    background: linear-gradient(#29baff,
+            #536cff);
+}
+
+.new-analysis-content {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.ai-orb {
+    width: 66px;
+    height: 66px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(43, 168, 255, 0.4);
+    border-radius: 50%;
+
+    background:
+        radial-gradient(circle,
+            rgba(37, 171, 255, 0.3),
+            rgba(37, 104, 255, 0.04));
+
+    box-shadow:
+        0 0 30px rgba(37, 153, 255, 0.13);
+}
+
+.orb-core {
+    color: #48bdff;
+    font-size: 27px;
+
+    text-shadow: 0 0 15px rgba(50, 182, 255, 0.7);
+}
+
+.card-eyebrow {
+    margin: 0 0 5px;
+
+    color: #2baaff;
+
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.new-analysis-content h2 {
+    margin: 0;
+
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.new-analysis-content p:not(.card-eyebrow) {
+    max-width: 650px;
+
+    margin: 8px 0 18px;
+
+    color: #8190a6;
+
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.analyze-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 10px 17px;
+
+    border: none;
+    border-radius: 8px;
+
+    color: white;
+
+    background: linear-gradient(100deg,
+            #1ea9e8,
+            #4668eb);
+
+    font-size: 12px;
+    font-weight: 600;
+
+    box-shadow: 0 8px 22px rgba(35, 136, 235, 0.2);
+}
+
+.analyze-button span {
+    font-size: 17px;
+}
+
+.analysis-features {
+    display: flex;
+    gap: 25px;
+
+    margin-top: 25px;
+    padding-top: 18px;
+
+    border-top: 1px solid rgba(108, 143, 180, 0.13);
+}
+
+.analysis-features div {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    color: #6f8097;
+    font-size: 10px;
+}
+
+.analysis-features span {
+    color: #32b5ff;
+}
+
+/* ================================
+   STATS
+================================ */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+
+    margin-top: 22px;
+}
+
+.stat-card {
+    padding: 20px;
+
+    border: 1px solid rgba(100, 126, 159, 0.14);
+    border-radius: 12px;
+
+    background: rgba(10, 18, 30, 0.65);
+}
+
+.stat-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    color: #78879d;
+    font-size: 11px;
+}
+
+.stat-icon {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    font-size: 13px;
+}
+
+.stat-icon.blue {
+    color: #3bb5ff;
+    background: rgba(35, 158, 235, 0.08);
+}
+
+.stat-icon.orange {
+    color: #ffad56;
+    background: rgba(255, 166, 71, 0.08);
+}
+
+.stat-icon.purple {
+    color: #a785ff;
+    background: rgba(139, 98, 255, 0.08);
+}
+
+.stat-card>strong {
+    display: block;
+
+    margin-top: 15px;
+
+    font-size: 27px;
+    font-weight: 600;
+}
+
+.stat-card>small {
+    display: block;
+
+    margin-top: 4px;
+
+    color: #536278;
+    font-size: 9px;
+}
+
+/* ================================
+   RECENT
+================================ */
+
+.recent-section {
+    margin-top: 38px;
+}
+
+.section-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    margin-bottom: 16px;
+}
+
+.section-heading h2 {
+    margin: 0;
+
+    font-size: 19px;
+    font-weight: 600;
+}
+
+.view-history-button {
+    border: none;
+    background: transparent;
+
+    color: #319fff;
+
+    font-size: 11px;
+}
+
+.analysis-table {
+    overflow: hidden;
+
+    border: 1px solid rgba(100, 126, 159, 0.14);
+    border-radius: 12px;
+
+    background: rgba(8, 15, 25, 0.68);
+}
+
+.table-header,
+.analysis-row {
+    display: grid;
+
+    grid-template-columns:
+        2fr 1.3fr 1fr 1.4fr 40px;
+
+    align-items: center;
+}
+
+.table-header {
+    padding: 14px 20px;
+
+    border-bottom: 1px solid rgba(100, 126, 159, 0.12);
+
+    color: #526178;
+
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+}
+
+.analysis-row {
+    min-height: 73px;
+
+    padding: 0 20px;
+
+    border-bottom: 1px solid rgba(100, 126, 159, 0.09);
+}
+
+.analysis-row:last-child {
+    border-bottom: none;
+}
+
+.patient-cell {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.patient-avatar {
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    color: #63bfff;
+    background: rgba(41, 155, 234, 0.09);
+
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.patient-cell strong,
+.patient-cell small {
+    display: block;
+}
+
+.patient-cell strong {
+    color: #bdc9da;
+    font-size: 11px;
+}
+
+.patient-cell small {
+    margin-top: 3px;
+
+    color: #536177;
+    font-size: 9px;
+}
+
+.date-cell {
+    color: #6e7d93;
+    font-size: 10px;
+}
+
+.condition-count {
+    color: #b7c7da;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    width: fit-content;
+
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    font-size: 9px;
+}
+
+.status i {
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+}
+
+.status.reviewed {
+    color: #47c9a0;
+    background: rgba(45, 198, 157, 0.07);
+}
+
+.status.reviewed i {
+    background: #42c59d;
+}
+
+.status.pending {
+    color: #ffb25c;
+    background: rgba(255, 173, 75, 0.07);
+}
+
+.status.pending i {
+    background: #ffae52;
+}
+
+.row-action {
+    width: 28px;
+    height: 28px;
+
+    border: none;
+    border-radius: 7px;
+
+    color: #5e7189;
+    background: transparent;
+
+    font-size: 16px;
+}
+
+.row-action:hover {
+    color: #45b5ff;
+    background: rgba(35, 151, 232, 0.08);
+}
+
+/* ================================
+   FOOTER
+================================ */
+
+.dashboard-footer {
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 35px;
+    padding-top: 20px;
+
+    border-top: 1px solid rgba(100, 126, 159, 0.1);
+
+    color: #45536a;
+
+    font-size: 9px;
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 1000px) {
+    .dashboard-sidebar {
+        width: 210px;
+    }
+
+    .dashboard-main {
+        width: calc(100% - 210px);
+        margin-left: 210px;
+
+        padding: 35px;
+    }
+}
+
+@media (max-width: 800px) {
+    .dashboard-sidebar {
+        display: none;
+    }
+
+    .dashboard-main {
+        width: 100%;
+        margin-left: 0;
+
+        padding: 25px 18px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-header {
+        gap: 20px;
+    }
+
+    .profile-info {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .dashboard-header {
+        flex-direction: column;
+    }
+
+    .new-analysis-content {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .analysis-features {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .table-header {
+        display: none;
+    }
+
+    .analysis-row {
+        grid-template-columns: 1fr auto;
+
+        gap: 12px;
+
+        padding: 15px;
+    }
+
+    .date-cell,
+    .condition-count {
+        display: none;
+    }
+
+    .status {
+        grid-column: 1;
+    }
+
+    .row-action {
+        grid-column: 2;
+        grid-row: 1 / span 2;
+    }
+
+    .dashboard-footer {
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+}
+
+/* =========================================================
+   DASHBOARD UPDATES
+   Keep all existing CSS above unchanged.
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   REMOVE OLD AI CLINICAL ASSISTANT CARD
+   --------------------------------------------------------- */
+
+.new-analysis-card {
+    display: none;
+}
+
+
+/* ---------------------------------------------------------
+   NEW DASHBOARD ACTION AREA
+   --------------------------------------------------------- */
+
+.dashboard-action-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+
+/* New Analysis card */
+
+.dashboard-new-analysis {
+    min-height: 125px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    padding: 22px 24px;
+
+    border: 1px solid rgba(59, 157, 230, 0.24);
+    border-radius: 14px;
+
+    background:
+        radial-gradient(circle at 90% 50%,
+            rgba(32, 108, 201, 0.15),
+            transparent 38%),
+        linear-gradient(130deg,
+            rgba(15, 36, 61, 0.85),
+            rgba(7, 17, 30, 0.88));
+}
+
+
+.dashboard-new-analysis-content {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+
+.dashboard-new-analysis-icon {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    color: #48bdff;
+    background: rgba(37, 153, 255, 0.1);
+
+    border: 1px solid rgba(43, 168, 255, 0.3);
+
+    font-size: 24px;
+}
+
+
+.dashboard-new-analysis h2 {
+    margin: 0 0 6px;
+
+    font-size: 17px;
+    font-weight: 600;
+}
+
+
+.dashboard-new-analysis p {
+    margin: 0;
+
+    color: #77879f;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+
+.dashboard-new-analysis button {
+    flex-shrink: 0;
+
+    padding: 11px 16px;
+
+    border: none;
+    border-radius: 8px;
+
+    color: #fff;
+
+    background: linear-gradient(100deg,
+            #1ea9e8,
+            #4668eb);
+
+    font-size: 11px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 22px rgba(35, 136, 235, 0.2);
+}
+
+
+.dashboard-new-analysis button:hover {
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 10px 25px rgba(35, 136, 235, 0.28);
+}
+
+
+/* ---------------------------------------------------------
+   NEEDS ATTENTION CARD
+   --------------------------------------------------------- */
+
+.dashboard-attention-card {
+    min-height: 125px;
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    padding: 22px 24px;
+
+    border: 1px solid rgba(255, 145, 90, 0.2);
+    border-radius: 14px;
+
+    background:
+        linear-gradient(130deg,
+            rgba(58, 31, 28, 0.5),
+            rgba(24, 15, 21, 0.6));
+}
+
+
+.dashboard-attention-icon {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    color: #ffae56;
+    background: rgba(255, 166, 71, 0.09);
+
+    border: 1px solid rgba(255, 166, 71, 0.18);
+
+    font-size: 20px;
+}
+
+
+.dashboard-attention-content {
+    flex: 1;
+}
+
+
+.dashboard-attention-content h2 {
+    margin: 0 0 6px;
+
+    font-size: 17px;
+    font-weight: 600;
+}
+
+
+.dashboard-attention-content p {
+    margin: 0;
+
+    color: #78879d;
+    font-size: 11px;
+}
+
+
+.dashboard-attention-button {
+    flex-shrink: 0;
+
+    padding: 10px 14px;
+
+    border: 1px solid rgba(255, 166, 71, 0.25);
+    border-radius: 8px;
+
+    color: #ffb25c;
+    background: rgba(255, 166, 71, 0.06);
+
+    font-size: 10px;
+
+    cursor: pointer;
+}
+
+
+.dashboard-attention-button:hover {
+    background: rgba(255, 166, 71, 0.12);
+}
+
+
+/* ---------------------------------------------------------
+   MAKE STATS 4 COLUMNS
+   --------------------------------------------------------- */
+
+.stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+
+/* Green stat icon */
+
+.stat-icon.green {
+    color: #40c9a1;
+    background: rgba(40, 200, 160, 0.08);
+}
+
+
+/* ---------------------------------------------------------
+   RECENT PATIENT ANALYSES
+   --------------------------------------------------------- */
+
+.recent-section {
+    margin-top: 30px;
+}
+
+
+.section-heading {
+    margin-bottom: 14px;
+}
+
+
+.section-heading h2 {
+    font-size: 18px;
+}
+
+
+.view-history-button {
+    cursor: pointer;
+}
+
+
+.view-history-button:hover {
+    color: #6db9ff;
+}
+
+
+/*
+   IMPORTANT:
+
+   Recent patient records are DISPLAY ONLY.
+   They should NOT look clickable.
+*/
+
+.analysis-row {
+    cursor: default;
+}
+
+
+.analysis-row:hover {
+    background: transparent;
+}
+
+
+.row-action {
+    display: none;
+}
+
+
+/* ---------------------------------------------------------
+   PROFILE
+   --------------------------------------------------------- */
+
+.profile {
+    cursor: default;
+}
+
+
+.profile-info strong {
+    color: #cdd8e8;
+}
+
+
+.profile-info span {
+    color: #65738a;
+}
+
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+   --------------------------------------------------------- */
+
+@media (max-width: 1000px) {
+
+    .dashboard-action-row {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .dashboard-action-row {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-new-analysis,
+    .dashboard-attention-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .dashboard-new-analysis button,
+    .dashboard-attention-button {
+        width: 100%;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ---------------------------------------------------------
+   SECTION HEADING (recent analyses row with search + link)
+   --------------------------------------------------------- */
+
+.recent-section .section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.recent-heading-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.search-box {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+}
+
+.search-box input {
+    width: 230px;
+
+    padding: 9px 34px 9px 13px;
+
+    border: 1px solid rgba(100, 126, 159, 0.18);
+    border-radius: 8px;
+
+    background: rgba(10, 18, 30, 0.6);
+    color: #cdd8e8;
+
+    font-size: 11px;
+}
+
+.search-box input::placeholder {
+    color: #5a6a82;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: rgba(58, 164, 255, 0.5);
+}
+
+.search-box span {
+    position: absolute;
+    right: 11px;
+
+    color: #5a6a82;
+    font-size: 13px;
+    pointer-events: none;
+}
+
+/* =========================================================
+   NOTE INSIGHT GLOBAL THEME
+   ========================================================= */
+
+:root {
+    --bg-primary: #f6f8fc;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #eef2f7;
+
+    --text-primary: #172033;
+    --text-secondary: #667085;
+    --text-muted: #98a2b3;
+
+    --border-color: #e4e7ec;
+
+    --accent-primary: #5b5ce2;
+    --accent-secondary: #7c7ff2;
+
+    --card-shadow: 0 8px 30px rgba(16, 24, 40, 0.06);
+}
+
+
+/* =========================
+   LIGHT THEME
+   ========================= */
+
+html.theme-light,
+html[data-theme="light"] {
+    --bg-primary: #f6f8fc;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #eef2f7;
+
+    --text-primary: #172033;
+    --text-secondary: #667085;
+    --text-muted: #98a2b3;
+
+    --border-color: #e4e7ec;
+
+    --accent-primary: #5b5ce2;
+    --accent-secondary: #7c7ff2;
+
+    --card-shadow: 0 8px 30px rgba(16, 24, 40, 0.06);
+}
+
+
+/* =========================
+   DARK THEME
+   ========================= */
+
+html.theme-dark,
+html[data-theme="dark"] {
+    --bg-primary: #080b14;
+    --bg-secondary: #111525;
+    --bg-tertiary: #191e31;
+
+    --text-primary: #f5f7ff;
+    --text-secondary: #c1c7d9;
+    --text-muted: #8d95aa;
+
+    --border-color: #292f43;
+
+    --accent-primary: #7c7ff2;
+    --accent-secondary: #9698ff;
+
+    --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+
+/* =========================
+   GLOBAL BODY
+   ========================= */
+
+html,
+body,
+#root {
+    min-height: 100%;
+    margin: 0;
+}
+
+
+body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease;
+}
+
+/* =========================================================
+   FINAL VIEWPORT / FIT-TO-SCREEN FIX
+   ========================================================= */
+
+/*
+   Prevent padding, borders and large grid children from
+   increasing the total width of the dashboard.
+*/
+
+.dashboard-page,
+.dashboard-page *,
+.dashboard-page *::before,
+.dashboard-page *::after {
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+body {
+    min-width: 0;
+}
+
+.dashboard-page {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.dashboard-sidebar {
+    flex: 0 0 250px;
+    width: 250px;
+    min-width: 250px;
+    max-width: 250px;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.dashboard-main {
+    flex: 1 1 auto;
+
+    /*
+       Do not use width: calc(100% - 250px) here.
+       The sidebar already occupies its own flex space.
+    */
+    width: auto;
+    min-width: 0;
+    max-width: 100%;
+
+    margin-left: 0;
+
+    box-sizing: border-box;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.dashboard-header {
+    min-width: 0;
+}
+
+.dashboard-header>* {
+    min-width: 0;
+}
+
+.profile {
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   ACTION CARDS
+   ========================================================= */
+
+.dashboard-action-row {
+    width: 100%;
+    min-width: 0;
+
+    grid-template-columns:
+        minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.dashboard-new-analysis,
+.dashboard-attention-card {
+    min-width: 0;
+    max-width: 100%;
+}
+
+.dashboard-new-analysis-content,
+.dashboard-attention-content {
+    min-width: 0;
+}
+
+.dashboard-new-analysis h2,
+.dashboard-new-analysis p,
+.dashboard-attention-content h2,
+.dashboard-attention-content p {
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   STATS
+   ========================================================= */
+
+.stats-grid {
+    width: 100%;
+    min-width: 0;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+}
+
+.stat-card {
+    min-width: 0;
+}
+
+
+/* =========================================================
+   RECENT SECTION
+   ========================================================= */
+
+.recent-section {
+    width: 100%;
+    min-width: 0;
+}
+
+.recent-section .section-heading {
+    min-width: 0;
+}
+
+.recent-heading-right {
+    min-width: 0;
+    max-width: 100%;
+}
+
+.search-box {
+    min-width: 0;
+    max-width: 100%;
+}
+
+.search-box input {
+    max-width: 100%;
+}
+
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+.analysis-table {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.table-header,
+.analysis-row {
+    min-width: 700px;
+}
+
+.analysis-row>*,
+.table-header>* {
+    min-width: 0;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.dashboard-footer {
+    min-width: 0;
+    max-width: 100%;
+}
+
+
+/* =========================================================
+   LARGE LAPTOP / SMALL DESKTOP
+   ========================================================= */
+
+@media (max-width: 1200px) {
+
+    .dashboard-sidebar {
+        flex-basis: 230px;
+        width: 230px;
+        min-width: 230px;
+        max-width: 230px;
+    }
+
+    .dashboard-main {
+        padding: 35px 30px;
+    }
+
+    .dashboard-action-row {
+        grid-template-columns:
+            minmax(0, 1fr) minmax(0, 1fr);
+    }
+
+    .stats-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .doc-insights-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    .dashboard-sidebar {
+        flex-basis: 210px;
+        width: 210px;
+        min-width: 210px;
+        max-width: 210px;
+    }
+
+    .dashboard-main {
+        padding: 30px 24px;
+    }
+
+    .dashboard-action-row {
+        grid-template-columns:
+            minmax(0, 1fr);
+    }
+
+    .stats-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+    .dashboard-sidebar {
+        display: none;
+    }
+
+    .dashboard-main {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+
+        margin-left: 0;
+
+        padding: 25px 18px;
+    }
+
+    .dashboard-action-row {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .doc-insights-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .recent-heading-right {
+        max-width: 100%;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .dashboard-main {
+        padding: 20px 15px;
+    }
+
+    .dashboard-action-row {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-new-analysis,
+    .dashboard-attention-card {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .dashboard-new-analysis button,
+    .dashboard-attention-button {
+        max-width: 100%;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .doc-insights-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .recent-section .section-heading {
+        width: 100%;
+    }
+
+    .recent-heading-right {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+
+    .search-box input {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+
+/* =========================================================
+   FINAL THEME + TEXT VISIBILITY FIX
+   ========================================================= */
+
+/*
+   The dashboard originally used hard-coded dark-theme text
+   colors. Those colors can become unreadable when the global
+   light/dark theme changes. These final rules intentionally
+   override the older dashboard colors.
+*/
+
+.dashboard-page {
+    background: var(--bg-primary) !important;
+    color: var(--text-primary) !important;
+}
+
+
+/* -------------------------
+   SIDEBAR
+   ------------------------- */
+
+.dashboard-sidebar {
+    background: var(--bg-secondary) !important;
+    border-right-color: var(--border-color) !important;
+}
+
+.dashboard-brand strong,
+.dashboard-brand small,
+.nav-item,
+.nav-item.active,
+.nav-item:hover,
+.privacy-badge strong,
+.privacy-badge small,
+.logout-button {
+    color: var(--text-primary) !important;
+}
+
+.dashboard-brand small,
+.privacy-badge small,
+.logout-button {
+    color: var(--text-secondary) !important;
+}
+
+.dashboard-sidebar .nav-item {
+    color: var(--text-secondary) !important;
+    background: transparent !important;
+}
+
+.dashboard-sidebar .nav-item:hover {
+    background: var(--bg-tertiary) !important;
+    color: var(--text-primary) !important;
+}
+
+.dashboard-sidebar .nav-item.active {
+    background: rgba(91, 92, 226, 0.10) !important;
+    border-color: rgba(91, 92, 226, 0.25) !important;
+    color: var(--text-primary) !important;
+}
+
+.privacy-badge {
+    background: var(--bg-tertiary) !important;
+    border-color: var(--border-color) !important;
+}
+
+
+/* -------------------------
+   MAIN HEADINGS
+   ------------------------- */
+
+.dashboard-main h1,
+.dashboard-main h2,
+.dashboard-main h3,
+.dashboard-main h4,
+.dashboard-main strong {
+    color: var(--text-primary) !important;
+}
+
+.dashboard-header h1 {
+    color: var(--text-primary) !important;
+}
+
+.header-subtitle,
+.dashboard-main .header-subtitle {
+    color: var(--text-secondary) !important;
+}
+
+.eyebrow,
+.card-eyebrow {
+    color: var(--accent-primary) !important;
+}
+
+
+/* -------------------------
+   ACTION CARDS
+   ------------------------- */
+
+.dashboard-new-analysis,
+.dashboard-attention-card {
+    background: var(--bg-secondary) !important;
+    border-color: var(--border-color) !important;
+}
+
+.dashboard-new-analysis h2,
+.dashboard-attention-content h2 {
+    color: var(--text-primary) !important;
+}
+
+.dashboard-new-analysis p,
+.dashboard-attention-content p {
+    color: var(--text-secondary) !important;
+}
+
+
+/* -------------------------
+   STATS
+   ------------------------- */
+
+.stat-card {
+    background: var(--bg-secondary) !important;
+    border-color: var(--border-color) !important;
+}
+
+.stat-top {
+    color: var(--text-secondary) !important;
+}
+
+.stat-card>strong {
+    color: var(--text-primary) !important;
+}
+
+.stat-card>small {
+    color: var(--text-muted) !important;
+}
+
+
+/* -------------------------
+   RECENT ANALYSES
+   ------------------------- */
+/* =========================================================
+   RECENT ANALYSIS ROW
+========================================================= */
+
+.recent-analysis-row {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 0.7fr 1fr 1fr;
+
+    align-items: center;
+
+    padding: 20px 28px;
+
+    border: none;
+    border-bottom: 1px solid var(--border);
+
+    background: transparent;
+    color: var(--text-h);
+
+    text-align: left;
+
+    cursor: pointer;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    outline: none;
+
+    box-sizing: border-box;
+
+    transition: background 0.2s ease;
+}
+
+/* Remove browser's ugly focus box */
+.recent-analysis-row:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+/* Keep a clean hover effect */
+.recent-analysis-row:hover {
+    background: var(--code-bg);
+}
+
+/* Remove gray active/click effect */
+.recent-analysis-row:active {
+    background: transparent;
+    outline: none;
+}
+
+/* Optional: accessible keyboard focus */
+.recent-analysis-row:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: -2px;
+}
+
+
+
+/* -------------------------
+   SEARCH
+   ------------------------- */
+
+.search-box input {
+    background: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+.search-box input::placeholder {
+    color: var(--text-muted) !important;
+}
+
+
+/* -------------------------
+   DOCUMENTATION INSIGHTS
+   ------------------------- */
+
+.doc-insights-card {
+    background: var(--bg-secondary) !important;
+    border-color: var(--border-color) !important;
+}
+
+.doc-insights-header h2,
+.doc-insight-top strong,
+.doc-insight p {
+    color: var(--text-primary) !important;
+}
+
+.doc-insight-top span,
+.doc-insight small {
+    color: var(--text-secondary) !important;
+}
+
+.view-insights-button {
+    color: var(--text-secondary) !important;
+    border-color: var(--border-color) !important;
+}
+
+
+/* -------------------------
+   FOOTER
+   ------------------------- */
+
+.dashboard-footer {
+    color: var(--text-muted) !important;
+    border-top-color: var(--border-color) !important;
+}
+
+
+/* =========================================================
+   LIGHT THEME
+   ========================================================= */
+
+html.theme-light .dashboard-page,
+html[data-theme="light"] .dashboard-page {
+    background: var(--bg-primary) !important;
+    color: var(--text-primary) !important;
+}
+
+html.theme-light .dashboard-sidebar,
+html.theme-light .stat-card,
+html.theme-light .analysis-table,
+html.theme-light .dashboard-new-analysis,
+html.theme-light .dashboard-attention-card,
+html[data-theme="light"] .dashboard-sidebar,
+html[data-theme="light"] .stat-card,
+html[data-theme="light"] .analysis-table,
+html[data-theme="light"] .dashboard-new-analysis,
+html[data-theme="light"] .dashboard-attention-card {
+    background: var(--bg-secondary) !important;
+}
+
+
+/* =========================================================
+   DARK THEME
+   ========================================================= */
+
+html.theme-dark .dashboard-page,
+html[data-theme="dark"] .dashboard-page {
+    background: var(--bg-primary) !important;
+    color: var(--text-primary) !important;
+}
+
+html.theme-dark .dashboard-sidebar,
+html.theme-dark .stat-card,
+html.theme-dark .analysis-table,
+html[data-theme="dark"] .dashboard-sidebar,
+html[data-theme="dark"] .stat-card,
+html[data-theme="dark"] .analysis-table {
+    background: var(--bg-secondary) !important;
+}
+
+
+/* =========================================================
+   FINAL SIDEBAR / MAIN CONTENT OVERLAP FIX
+   ========================================================= */
+
+/*
+   The sidebar is position: fixed, so it is removed from the
+   normal flex flow. The main content must therefore reserve
+   exactly the sidebar's width.
+
+   IMPORTANT:
+   Do NOT use margin-left: 0 here.
+*/
+
+.dashboard-page {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    min-height: 100vh;
+
+    overflow-x: hidden;
+}
+
+
+.dashboard-sidebar {
+    position: fixed;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 250px;
+    min-width: 250px;
+    max-width: 250px;
+
+    box-sizing: border-box;
+
+    z-index: 1000;
+}
+
+
+.dashboard-main {
+    display: block;
+
+    width: calc(100% - 250px);
+    max-width: calc(100% - 250px);
+    min-width: 0;
+
+    margin-left: 250px;
+
+    padding: 42px 55px;
+
+    box-sizing: border-box;
+
+    overflow-x: hidden;
+}
+
+
+/* Keep the content grids inside the available width */
+
+.dashboard-header,
+.dashboard-action-row,
+.stats-grid,
+.recent-section,
+.doc-insights-card,
+.dashboard-footer {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+}
+
+
+/* Prevent individual cards from forcing the page wider */
+
+.dashboard-action-row>*,
+.stats-grid>*,
+.doc-insights-grid>* {
+    min-width: 0;
+    max-width: 100%;
+}
+
+
+/* =========================================================
+   RESPONSIVE OVERLAP FIX
+   ========================================================= */
+
+@media (max-width: 1200px) {
+
+    .dashboard-sidebar {
+        width: 230px;
+        min-width: 230px;
+        max-width: 230px;
+    }
+
+    .dashboard-main {
+        width: calc(100% - 230px);
+        max-width: calc(100% - 230px);
+
+        margin-left: 230px;
+
+        padding: 35px 30px;
+    }
+}
+
+
+@media (max-width: 1000px) {
+
+    .dashboard-sidebar {
+        width: 210px;
+        min-width: 210px;
+        max-width: 210px;
+    }
+
+    .dashboard-main {
+        width: calc(100% - 210px);
+        max-width: calc(100% - 210px);
+
+        margin-left: 210px;
+
+        padding: 30px 24px;
+    }
+}
+
+
+@media (max-width: 800px) {
+
+    .dashboard-sidebar {
+        display: none;
+    }
+
+    .dashboard-main {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+
+        margin-left: 0;
+
+        padding: 25px 18px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .dashboard-main {
+        width: 100%;
+        max-width: 100%;
+
+        margin-left: 0;
+
+        padding: 20px 15px;
+    }
+}
+
+/* =========================================================
+   FINAL START NEW ANALYSIS BUTTON FIX
+   ========================================================= */
+
+.dashboard-sidebar .start-analysis-button {
+    width: 100%;
+    height: 46px;
+    min-height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 2px 0 4px;
+    padding: 0 17px;
+    border: 1px solid rgba(91, 92, 226, 0.35) !important;
+    border-radius: 10px !important;
+    background: rgba(91, 92, 226, 0.08) !important;
+    color: var(--accent-primary) !important;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    box-shadow: none !important;
+}
+
+.dashboard-sidebar .start-analysis-button:hover {
+    background: rgba(91, 92, 226, 0.15) !important;
+    border-color: rgba(91, 92, 226, 0.5) !important;
+    color: var(--accent-primary) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(91, 92, 226, 0.12) !important;
+}
+
+.dashboard-sidebar .start-analysis-button:focus,
+.dashboard-sidebar .start-analysis-button:focus-visible {
+    outline: none !important;
+    box-shadow: 0 0 0 2px rgba(91, 92, 226, 0.15) !important;
+}
+
+.dashboard-sidebar .start-analysis-button:active {
+    transform: translateY(0);
+}
+/* =========================================================
+   NOTE INSIGHT
+   FINAL SHARED SIDEBAR DESIGN
+   Matches History / App-wide navigation
+   ========================================================= */
+
+.dashboard-sidebar {
+    position: fixed !important;
+
+    top: 0 !important;
+    left: 0 !important;
+    bottom: 0 !important;
+
+    width: 280px !important;
+    min-width: 280px !important;
+    max-width: 280px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    padding: 42px 34px 28px !important;
+
+    box-sizing: border-box !important;
+
+    background: var(--bg-primary) !important;
+
+    border-right: 1px solid var(--border-color) !important;
+
+    backdrop-filter: none !important;
+
+    z-index: 1000 !important;
+}
+
+
+/* =========================================================
+   BRAND
+   ========================================================= */
+
+.dashboard-brand {
+    display: flex !important;
+    align-items: flex-start !important;
+
+    gap: 18px !important;
+
+    padding: 0 !important;
+
+    margin-bottom: 125px !important;
+}
+
+
+.mini-logo {
+    width: 66px !important;
+    height: 66px !important;
+
+    flex-shrink: 0 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    border: 2px solid var(--accent-primary) !important;
+
+    border-radius: 24px !important;
+
+    background: var(--bg-secondary) !important;
+
+    box-shadow: none !important;
+
+    color: var(--accent-secondary) !important;
+}
+
+
+.mini-logo span {
+    font-size: 30px !important;
+
+    font-weight: 500 !important;
+
+    letter-spacing: 0 !important;
+
+    color: var(--accent-secondary) !important;
+}
+
+
+.dashboard-brand > div:last-child {
+    padding-top: 2px !important;
+}
+
+
+.dashboard-brand strong {
+    display: block !important;
+
+    margin: 0 !important;
+
+    color: var(--text-primary) !important;
+
+    font-size: 25px !important;
+
+    font-weight: 700 !important;
+
+    letter-spacing: 3px !important;
+
+    line-height: 1.25 !important;
+
+    white-space: nowrap !important;
+}
+
+
+.dashboard-brand small {
+    display: block !important;
+
+    margin-top: 16px !important;
+
+    color: var(--text-secondary) !important;
+
+    font-size: 19px !important;
+
+    font-weight: 400 !important;
+
+    letter-spacing: 0 !important;
+
+    line-height: 1 !important;
+}
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+.dashboard-nav {
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    gap: 12px !important;
+
+    width: 100% !important;
+}
+
+
+.dashboard-sidebar .nav-item {
+    width: 100% !important;
+
+    min-height: 64px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    gap: 25px !important;
+
+    padding: 0 22px !important;
+
+    margin: 0 !important;
+
+    border: 1px solid transparent !important;
+
+    border-radius: 22px !important;
+
+    background: transparent !important;
+
+    color: var(--text-secondary) !important;
+
+    font-family: inherit !important;
+
+    font-size: 20px !important;
+
+    font-weight: 500 !important;
+
+    text-align: left !important;
+
+    cursor: pointer !important;
+
+    appearance: none !important;
+
+    -webkit-appearance: none !important;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease !important;
+}
+
+
+.dashboard-sidebar .nav-item:hover {
+    background: var(--bg-tertiary) !important;
+
+    color: var(--text-primary) !important;
+}
+
+
+.dashboard-sidebar .nav-item.active {
+    background: rgba(124, 127, 242, 0.12) !important;
+
+    border-color: transparent !important;
+
+    color: var(--accent-secondary) !important;
+}
+
+
+/* =========================================================
+   NAVIGATION ICONS
+   ========================================================= */
+
+.dashboard-sidebar .nav-icon {
+    width: 30px !important;
+
+    min-width: 30px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    color: var(--text-secondary) !important;
+
+    font-size: 28px !important;
+
+    font-weight: 400 !important;
+
+    line-height: 1 !important;
+}
+
+
+.dashboard-sidebar .nav-item.active .nav-icon {
+    color: var(--accent-secondary) !important;
+}
+
+
+/* =========================================================
+   REMOVE OLD START ANALYSIS BUTTON STYLE
+   ========================================================= */
+
+.dashboard-sidebar .start-analysis-button {
+    all: unset !important;
+}
+
+
+/* =========================================================
+   SIDEBAR BOTTOM
+   ========================================================= */
+
+.dashboard-sidebar .sidebar-bottom {
+    width: 100% !important;
+
+    margin-top: auto !important;
+}
+
+
+/* =========================================================
+   PRIVATE WORKSPACE
+   ========================================================= */
+
+.dashboard-sidebar .privacy-badge {
+    width: 100% !important;
+
+    min-height: 110px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    gap: 20px !important;
+
+    padding: 20px !important;
+
+    box-sizing: border-box !important;
+
+    border: 1px solid var(--border-color) !important;
+
+    border-radius: 22px !important;
+
+    background: var(--bg-secondary) !important;
+}
+
+
+.dashboard-sidebar .privacy-badge > span {
+    width: 48px !important;
+
+    height: 48px !important;
+
+    min-width: 48px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    border-radius: 50% !important;
+
+    color: #79d6b0 !important;
+
+    background: rgba(76, 180, 145, 0.12) !important;
+
+    font-size: 30px !important;
+
+    font-weight: 400 !important;
+}
+
+
+.dashboard-sidebar .privacy-badge strong {
+    display: block !important;
+
+    margin: 0 !important;
+
+    color: var(--text-primary) !important;
+
+    font-size: 16px !important;
+
+    font-weight: 700 !important;
+
+    white-space: nowrap !important;
+}
+
+
+.dashboard-sidebar .privacy-badge small {
+    display: block !important;
+
+    margin-top: 12px !important;
+
+    color: var(--text-secondary) !important;
+
+    font-size: 14px !important;
+
+    font-weight: 400 !important;
+
+    white-space: nowrap !important;
+}
+
+
+/* =========================================================
+   SIGN OUT
+   ========================================================= */
+
+.dashboard-sidebar .logout-button {
+    width: auto !important;
+
+    min-height: 48px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    gap: 12px !important;
+
+    margin: 25px 0 0 !important;
+
+    padding: 0 10px !important;
+
+    border: none !important;
+
+    border-radius: 12px !important;
+
+    background: transparent !important;
+
+    color: var(--text-secondary) !important;
+
+    font-family: inherit !important;
+
+    font-size: 18px !important;
+
+    font-weight: 400 !important;
+
+    text-align: left !important;
+
+    cursor: pointer !important;
+}
+
+
+.dashboard-sidebar .logout-button:hover {
+    background: transparent !important;
+
+    color: var(--text-primary) !important;
+}
+
+
+.dashboard-sidebar .logout-button span:first-child {
+    font-size: 27px !important;
+
+    line-height: 1 !important;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+   Sidebar is now 280px
+   ========================================================= */
+
+.dashboard-main {
+    width: calc(100% - 280px) !important;
+
+    max-width: calc(100% - 280px) !important;
+
+    margin-left: 280px !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1200px) {
+
+    .dashboard-sidebar {
+        width: 250px !important;
+
+        min-width: 250px !important;
+
+        max-width: 250px !important;
+
+        padding: 35px 25px 24px !important;
+    }
+
+
+    .dashboard-brand {
+        margin-bottom: 90px !important;
+    }
+
+
+    .dashboard-brand strong {
+        font-size: 21px !important;
+
+        letter-spacing: 2.5px !important;
+    }
+
+
+    .dashboard-brand small {
+        font-size: 17px !important;
+    }
+
+
+    .mini-logo {
+        width: 58px !important;
+
+        height: 58px !important;
+
+        border-radius: 20px !important;
+    }
+
+
+    .mini-logo span {
+        font-size: 26px !important;
+    }
+
+
+    .dashboard-sidebar .nav-item {
+        min-height: 58px !important;
+
+        border-radius: 18px !important;
+
+        font-size: 18px !important;
+
+        gap: 20px !important;
+    }
+
+
+    .dashboard-main {
+        width: calc(100% - 250px) !important;
+
+        max-width: calc(100% - 250px) !important;
+
+        margin-left: 250px !important;
+    }
+}
+
+
+@media (max-width: 1000px) {
+
+    .dashboard-sidebar {
+        width: 220px !important;
+
+        min-width: 220px !important;
+
+        max-width: 220px !important;
+
+        padding: 30px 20px 22px !important;
+    }
+
+
+    .dashboard-brand {
+        margin-bottom: 65px !important;
+
+        gap: 13px !important;
+    }
+
+
+    .dashboard-brand strong {
+        font-size: 17px !important;
+
+        letter-spacing: 2px !important;
+    }
+
+
+    .dashboard-brand small {
+        margin-top: 10px !important;
+
+        font-size: 14px !important;
+    }
+
+
+    .mini-logo {
+        width: 50px !important;
+
+        height: 50px !important;
+
+        border-radius: 17px !important;
+    }
+
+
+    .mini-logo span {
+        font-size: 22px !important;
+    }
+
+
+    .dashboard-sidebar .nav-item {
+        min-height: 52px !important;
+
+        gap: 15px !important;
+
+        padding: 0 16px !important;
+
+        border-radius: 16px !important;
+
+        font-size: 16px !important;
+    }
+
+
+    .dashboard-sidebar .nav-icon {
+        width: 24px !important;
+
+        min-width: 24px !important;
+
+        font-size: 22px !important;
+    }
+
+
+    .dashboard-sidebar .privacy-badge {
+        min-height: 90px !important;
+
+        padding: 15px !important;
+
+        gap: 12px !important;
+
+        border-radius: 17px !important;
+    }
+
+
+    .dashboard-sidebar .privacy-badge > span {
+        width: 38px !important;
+
+        height: 38px !important;
+
+        min-width: 38px !important;
+
+        font-size: 23px !important;
+    }
+
+
+    .dashboard-sidebar .privacy-badge strong {
+        font-size: 13px !important;
+    }
+
+
+    .dashboard-sidebar .privacy-badge small {
+        margin-top: 7px !important;
+
+        font-size: 11px !important;
+    }
+
+
+    .dashboard-main {
+        width: calc(100% - 220px) !important;
+
+        max-width: calc(100% - 220px) !important;
+
+        margin-left: 220px !important;
+    }
+}
+
+
+@media (max-width: 800px) {
+
+    .dashboard-sidebar {
+        display: none !important;
+    }
+
+
+    .dashboard-main {
+        width: 100% !important;
+
+        max-width: 100% !important;
+
+        margin-left: 0 !important;
+    }
+}
+/* =========================================================
+   NOTE INSIGHT — DASHBOARD SIDEBAR
+   MATCHES HISTORY SIDEBAR
+   ========================================================= */
+
+.dashboard-sidebar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    bottom: 0 !important;
+
+    width: 344px !important;
+    min-width: 344px !important;
+    max-width: 344px !important;
+
+    padding: 42px 27px 30px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    box-sizing: border-box !important;
+
+    background: var(--bg-primary) !important;
+    border-right: 1px solid var(--border-color) !important;
+
+    backdrop-filter: none !important;
+
+    z-index: 1000 !important;
+}
+
+
+/* =========================================================
+   BRAND
+   ========================================================= */
+
+.dashboard-brand {
+    display: flex !important;
+    align-items: center !important;
+
+    gap: 18px !important;
+
+    padding: 0 !important;
+    margin: 0 0 91px !important;
+}
+
+
+.mini-logo {
+    width: 61px !important;
+    height: 61px !important;
+
+    flex-shrink: 0 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    border: 1.5px solid var(--accent-primary) !important;
+    border-radius: 18px !important;
+
+    background: transparent !important;
+
+    box-shadow: none !important;
+}
+
+
+.mini-logo span {
+    color: var(--accent-primary) !important;
+
+    font-size: 24px !important;
+    font-weight: 500 !important;
+
+    letter-spacing: 0 !important;
+}
+
+
+.dashboard-brand strong {
+    display: block !important;
+
+    color: var(--text-primary) !important;
+
+    font-size: 20px !important;
+    font-weight: 700 !important;
+
+    letter-spacing: 2px !important;
+
+    line-height: 1.2 !important;
+
+    white-space: nowrap !important;
+}
+
+
+.dashboard-brand small {
+    display: block !important;
+
+    margin-top: 12px !important;
+
+    color: var(--text-secondary) !important;
+
+    font-size: 14px !important;
+    font-weight: 400 !important;
+
+    letter-spacing: 0 !important;
+
+    line-height: 1 !important;
+}
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+.dashboard-nav {
+    display: flex !important;
+    flex-direction: column !important;
+
+    gap: 8px !important;
+
+    width: 100% !important;
+}
+
+
+.dashboard-sidebar .nav-item {
+    width: 100% !important;
+    height: 72px !important;
+    min-height: 72px !important;
+
+    display: flex !important;
+    align-items: center !important;
+
+    gap: 22px !important;
+
+    padding: 0 25px !important;
+    margin: 0 !important;
+
+    border: none !important;
+    border-radius: 16px !important;
+
+    background: transparent !important;
+
+    color: var(--text-secondary) !important;
+
+    font-family: inherit !important;
+    font-size: 18px !important;
+    font-weight: 400 !important;
+
+    text-align: left !important;
+
+    cursor: pointer !important;
+
+    box-sizing: border-box !important;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease !important;
+}
+
+
+.dashboard-sidebar .nav-item:hover {
+    background: rgba(124, 127, 242, 0.06) !important;
+
+    color: var(--text-primary) !important;
+}
+
+
+.dashboard-sidebar .nav-item.active {
+    background: rgba(124, 127, 242, 0.12) !important;
+
+    color: var(--accent-primary) !important;
+
+    border: none !important;
+}
+
+
+/* =========================================================
+   NAV ICONS
+   ========================================================= */
+
+.dashboard-sidebar .nav-icon {
+    width: 24px !important;
+    min-width: 24px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    color: #8d95aa !important;
+
+    font-size: 22px !important;
+    font-weight: 400 !important;
+
+    line-height: 1 !important;
+}
+
+
+.dashboard-sidebar .nav-item.active .nav-icon {
+    color: var(--accent-primary) !important;
+}
+
+
+/* =========================================================
+   REMOVE OLD SPECIAL NEW-ANALYSIS BUTTON
+   ========================================================= */
+
+.dashboard-sidebar .start-analysis-button {
+    all: unset !important;
+}
+
+
+/* =========================================================
+   SIDEBAR BOTTOM
+   ========================================================= */
+
+.dashboard-sidebar .sidebar-bottom {
+    width: 100% !important;
+
+    margin-top: auto !important;
+}
+
+
+/* =========================================================
+   PRIVATE WORKSPACE
+   ========================================================= */
+
+.dashboard-sidebar .privacy-badge {
+    width: 100% !important;
+    min-height: 124px !important;
+
+    display: flex !important;
+    align-items: flex-start !important;
+
+    gap: 16px !important;
+
+    padding: 27px 22px !important;
+
+    box-sizing: border-box !important;
+
+    border: 1px solid var(--border-color) !important;
+    border-radius: 16px !important;
+
+    background: var(--bg-secondary) !important;
+}
+
+
+.dashboard-sidebar .privacy-badge>span {
+    width: 26px !important;
+    height: 26px !important;
+
+    min-width: 26px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    margin-top: 0 !important;
+
+    border-radius: 50% !important;
+
+    background: transparent !important;
+
+    color: #7bd6b0 !important;
+
+    font-size: 25px !important;
+    font-weight: 400 !important;
+}
+
+
+.dashboard-sidebar .privacy-badge strong {
+    display: block !important;
+
+    color: var(--text-primary) !important;
+
+    font-size: 16px !important;
+    font-weight: 700 !important;
+
+    line-height: 1.2 !important;
+}
+
+
+.dashboard-sidebar .privacy-badge small {
+    display: block !important;
+
+    margin-top: 25px !important;
+
+    color: var(--text-secondary) !important;
+
+    font-size: 14px !important;
+    font-weight: 400 !important;
+}
+
+
+/* =========================================================
+   SIGN OUT
+   ========================================================= */
+
+.dashboard-sidebar .logout-button {
+    width: auto !important;
+
+    display: flex !important;
+    align-items: center !important;
+
+    gap: 9px !important;
+
+    margin: 29px 0 0 !important;
+    padding: 0 12px !important;
+
+    border: none !important;
+    border-radius: 8px !important;
+
+    background: transparent !important;
+
+    color: var(--text-secondary) !important;
+
+    font-family: inherit !important;
+
+    font-size: 16px !important;
+    font-weight: 400 !important;
+
+    cursor: pointer !important;
+}
+
+
+.dashboard-sidebar .logout-button:hover {
+    background: transparent !important;
+    color: var(--text-primary) !important;
+}
+
+
+.dashboard-sidebar .logout-button span:first-child {
+    font-size: 19px !important;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.dashboard-main {
+    width: calc(100% - 344px) !important;
+    max-width: calc(100% - 344px) !important;
+
+    margin-left: 344px !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1200px) {
+
+    .dashboard-sidebar {
+        width: 300px !important;
+        min-width: 300px !important;
+        max-width: 300px !important;
+
+        padding-left: 22px !important;
+        padding-right: 22px !important;
+    }
+
+    .dashboard-main {
+        width: calc(100% - 300px) !important;
+        max-width: calc(100% - 300px) !important;
+
+        margin-left: 300px !important;
+    }
+
+    .dashboard-brand strong {
+        font-size: 18px !important;
+    }
+
+    .dashboard-sidebar .nav-item {
+        font-size: 17px !important;
+    }
+}
+
+
+@media (max-width: 1000px) {
+
+    .dashboard-sidebar {
+        width: 240px !important;
+        min-width: 240px !important;
+        max-width: 240px !important;
+
+        padding: 30px 18px 24px !important;
+    }
+
+    .dashboard-main {
+        width: calc(100% - 240px) !important;
+        max-width: calc(100% - 240px) !important;
+
+        margin-left: 240px !important;
+    }
+
+    .dashboard-brand {
+        gap: 12px !important;
+        margin-bottom: 65px !important;
+    }
+
+    .mini-logo {
+        width: 50px !important;
+        height: 50px !important;
+    }
+
+    .mini-logo span {
+        font-size: 21px !important;
+    }
+
+    .dashboard-brand strong {
+        font-size: 15px !important;
+        letter-spacing: 1.5px !important;
+    }
+
+    .dashboard-brand small {
+        margin-top: 8px !important;
+        font-size: 12px !important;
+    }
+
+    .dashboard-sidebar .nav-item {
+        height: 58px !important;
+        min-height: 58px !important;
+
+        gap: 15px !important;
+
+        padding: 0 18px !important;
+
+        border-radius: 13px !important;
+
+        font-size: 15px !important;
+    }
+}
+
+
+@media (max-width: 800px) {
+
+    .dashboard-sidebar {
+        display: none !important;
+    }
+
+    .dashboard-main {
+        width: 100% !important;
+        max-width: 100% !important;
+
+        margin-left: 0 !important;
+    }
+}
+/* =========================================================
+   RECENT PATIENT ANALYSES — FINAL POLISH
+   ========================================================= */
+
+.recent-section {
+    margin-top: 34px;
+}
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 14px;
+}
+
+.section-heading h2 {
+    margin: 0;
+    color: #eef4ff !important;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.2px;
+}
+
+.recent-heading-right {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+/* Search */
+
+.search-box {
+    position: relative;
+    width: 260px;
+}
+
+.search-box input {
+    width: 100%;
+    height: 40px;
+    box-sizing: border-box;
+
+    padding: 0 38px 0 14px;
+
+    border: 1px solid rgba(112, 135, 170, 0.22);
+    border-radius: 10px;
+
+    background: rgba(13, 22, 36, 0.82) !important;
+    color: #dce7f7 !important;
+
+    font-family: inherit;
+    font-size: 11px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.search-box input::placeholder {
+    color: #66758d !important;
+}
+
+.search-box input:focus {
+    border-color: rgba(55, 159, 255, 0.45);
+    background: rgba(15, 26, 42, 0.95) !important;
+    box-shadow: 0 0 0 3px rgba(55, 159, 255, 0.06);
+}
+
+.search-box span {
+    position: absolute;
+    right: 13px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #6d7e96;
+    font-size: 16px;
+
+    pointer-events: none;
+}
+
+.view-history-button {
+    padding: 0;
+
+    border: none;
+    background: transparent;
+
+    color: #4ba9ff !important;
+
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+}
+
+.view-history-button:hover {
+    color: #79c3ff !important;
+}
+
+
+/* =========================================================
+   TABLE CONTAINER
+   ========================================================= */
+
+.analysis-table {
+    width: 100%;
+    box-sizing: border-box;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(91, 119, 158, 0.18) !important;
+    border-radius: 14px;
+
+    background: rgba(9, 17, 29, 0.78) !important;
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.12);
+}
+
+
+/* =========================================================
+   TABLE HEADER
+   ========================================================= */
+
+.table-header,
+.analysis-row {
+    display: grid;
+
+    /*
+     * Patient | Last Visit | Conditions |
+     * Documentation | Status
+     */
+    grid-template-columns:
+        minmax(240px, 2.2fr) minmax(125px, 1.1fr) minmax(90px, 0.7fr) minmax(130px, 1fr) minmax(125px, 1fr);
+
+    align-items: center;
+}
+
+.table-header {
+    min-height: 48px;
+    box-sizing: border-box;
+
+    padding: 0 22px;
+
+    border-bottom: 1px solid rgba(91, 119, 158, 0.14);
+
+    color: #64748c !important;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 0.9px;
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   TABLE ROW
+   ========================================================= */
+
+.analysis-row {
+    min-height: 76px;
+    box-sizing: border-box;
+
+    padding: 0 22px;
+
+    border-bottom: 1px solid rgba(91, 119, 158, 0.10);
+
+    /*
+     * IMPORTANT:
+     * No gray background.
+     * No giant selected-looking block.
+     */
+    background: transparent !important;
+
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease;
+}
+
+.analysis-row:last-child {
+    border-bottom: none;
+}
+
+.analysis-row:hover {
+    background: rgba(40, 83, 130, 0.07) !important;
+}
+
+
+/* =========================================================
+   PATIENT
+   ========================================================= */
+
+.patient-cell {
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.patient-avatar {
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(64, 171, 255, 0.18);
+    border-radius: 10px;
+
+    color: #62baff !important;
+
+    background: rgba(41, 155, 234, 0.10) !important;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.patient-cell strong {
+    display: block;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    color: #e3ebf8 !important;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.patient-cell small {
+    display: block;
+
+    margin-top: 4px;
+
+    color: #64758d !important;
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   DATE
+   ========================================================= */
+
+.date-cell {
+    color: #9aa9bd !important;
+
+    font-size: 10px;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   CONDITIONS
+   ========================================================= */
+
+.condition-count {
+    color: #d8e2f0 !important;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   DOCUMENTATION
+   ========================================================= */
+
+.doc-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    width: fit-content;
+
+    font-size: 10px;
+    font-weight: 500;
+
+    white-space: nowrap;
+}
+
+.doc-status i {
+    width: 6px;
+    height: 6px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+}
+
+.doc-status.good {
+    color: #4ed0a5 !important;
+}
+
+.doc-status.good i {
+    background: #4ed0a5;
+    box-shadow: 0 0 8px rgba(78, 208, 165, 0.35);
+}
+
+.doc-status.gaps {
+    color: #ffb45f !important;
+}
+
+.doc-status.gaps i {
+    background: #ffb45f;
+    box-shadow: 0 0 8px rgba(255, 180, 95, 0.30);
+}
+
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.status {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    width: fit-content;
+
+    box-sizing: border-box;
+
+    padding: 7px 11px;
+
+    border-radius: 999px;
+
+    font-size: 9px;
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+.status i {
+    width: 6px;
+    height: 6px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+}
+
+.status.reviewed {
+    color: #54d2a8 !important;
+    background: rgba(53, 198, 157, 0.09) !important;
+
+    border: 1px solid rgba(53, 198, 157, 0.13);
+}
+
+.status.reviewed i {
+    background: #54d2a8;
+    box-shadow: 0 0 7px rgba(84, 210, 168, 0.4);
+}
+
+.status.pending {
+    color: #ffb55f !important;
+    background: rgba(255, 177, 85, 0.09) !important;
+
+    border: 1px solid rgba(255, 177, 85, 0.13);
+}
+
+.status.pending i {
+    background: #ffb55f;
+    box-shadow: 0 0 7px rgba(255, 181, 95, 0.35);
+}
+
+
+/* =========================================================
+   ROW ACTION
+   ========================================================= */
+
+.row-action {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 8px;
+
+    color: #62758e;
+    background: transparent;
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+.row-action:hover {
+    color: #55baff;
+    background: rgba(40, 155, 235, 0.08);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1150px) {
+
+    .recent-heading-right {
+        gap: 12px;
+    }
+
+    .search-box {
+        width: 220px;
+    }
+
+    .table-header,
+    .analysis-row {
+        grid-template-columns:
+            minmax(200px, 2fr) minmax(110px, 1fr) minmax(70px, 0.6fr) minmax(115px, 1fr) minmax(115px, 1fr);
+    }
+}
+
+
+@media (max-width: 900px) {
+
+    .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .recent-heading-right {
+        width: 100%;
+    }
+
+    .search-box {
+        flex: 1;
+        width: auto;
+    }
+
+    .analysis-table {
+        overflow-x: auto;
+    }
+
+    .table-header,
+    .analysis-row {
+        min-width: 760px;
+    }
+}
+/* Remove harsh white borders from analysis rows */
+.analysis-row {
+    border: none !important;
+    border-bottom: 1px solid rgba(91, 119, 158, 0.10) !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.analysis-row:first-of-type {
+    border-top: none !important;
+}
+
+.analysis-row:last-child {
+    border-bottom: none !important;
+}
+
+/* Remove any white border from row children */
+.analysis-row>* {
+    border: none !important;
+    outline: none !important;
+}
+
+/* Keep the table itself subtle */
+.analysis-table {
+    border: 1px solid rgba(91, 119, 158, 0.16) !important;
+    box-shadow: none !important;
+}

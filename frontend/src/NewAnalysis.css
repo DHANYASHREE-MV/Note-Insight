@@ -1,0 +1,548 @@
+/* =========================================================
+   NEW ANALYSIS MODAL
+   Uses the theme variables from index.css (--bg, --bg-card,
+   --text, --text-h, --border, --border-strong, --accent,
+   --accent-bg, --accent-border, --success, --danger, --code-bg)
+   so it follows html.theme-light / html.theme-dark instead of
+   being hardcoded dark.
+========================================================= */
+
+.new-analysis-overlay {
+    position: fixed;
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   DARK BACKDROP OVER DASHBOARD
+   Kept as a translucent black in both themes — dimming the
+   page behind a modal reads correctly whether the page itself
+   is light or dark.
+========================================================= */
+
+.new-analysis-backdrop {
+    position: absolute;
+    inset: 0;
+
+    background: rgba(5, 7, 13, 0.6);
+
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.new-analysis-modal {
+    position: relative;
+    z-index: 2;
+
+    width: min(720px, 92vw);
+    max-height: 88vh;
+
+    overflow-y: auto;
+
+    box-sizing: border-box;
+
+    padding: 38px 42px 32px;
+
+    background: var(--bg-card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 20px;
+
+    box-shadow: var(--shadow);
+
+    color: var(--text-h);
+
+    animation: newAnalysisOpen 0.2s ease-out;
+}
+
+
+/* =========================================================
+   OPEN ANIMATION
+========================================================= */
+
+@keyframes newAnalysisOpen {
+
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+/* =========================================================
+   CLOSE BUTTON
+========================================================= */
+
+.new-analysis-close {
+    position: absolute;
+
+    top: 20px;
+    right: 22px;
+
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 9px;
+
+    background: transparent;
+
+    color: var(--text);
+
+    font-size: 30px;
+    font-weight: 300;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.new-analysis-close:hover {
+    background: var(--code-bg);
+    color: var(--text-h);
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.new-analysis-modal-header {
+    padding-right: 45px;
+
+    margin-bottom: 30px;
+}
+
+.new-analysis-eyebrow {
+    margin: 0 0 8px;
+
+    color: var(--accent);
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 1.8px;
+}
+
+.new-analysis-modal-header h1 {
+    margin: 0;
+
+    color: var(--text-h);
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 36px;
+    font-weight: 700;
+
+    line-height: 1.1;
+}
+
+.new-analysis-description {
+    max-width: 600px;
+
+    margin: 10px 0 0;
+
+    color: var(--text);
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.new-analysis-form {
+    width: 100%;
+}
+
+
+/* =========================================================
+   PATIENT + DATE
+========================================================= */
+
+.new-analysis-fields {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+
+    margin-bottom: 25px;
+}
+
+
+.new-analysis-field {
+    min-width: 0;
+}
+
+.new-analysis-field label,
+.new-analysis-note-field label {
+    display: block;
+
+    margin-bottom: 9px;
+
+    color: var(--text);
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+.new-analysis-field input {
+    width: 100%;
+    height: 52px;
+
+    box-sizing: border-box;
+
+    padding: 0 16px;
+
+    border: 1px solid var(--border);
+    border-radius: 11px;
+
+    outline: none;
+
+    background: var(--code-bg);
+
+    color: var(--text-h);
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    transition: 0.2s ease;
+}
+
+
+.new-analysis-field input::placeholder {
+    color: var(--text);
+}
+
+
+.new-analysis-field input:focus {
+    border-color: var(--accent);
+
+    box-shadow: 0 0 0 3px var(--accent-bg);
+}
+
+
+/* =========================================================
+   DATE INPUT
+========================================================= */
+
+html.theme-dark .new-analysis-field input[type="date"] {
+    color-scheme: dark;
+}
+
+html.theme-light .new-analysis-field input[type="date"] {
+    color-scheme: light;
+}
+
+.new-analysis-field input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+
+    opacity: 0.8;
+}
+
+
+/* =========================================================
+   CLINICAL NOTE
+========================================================= */
+
+.new-analysis-note-field {
+    width: 100%;
+}
+
+
+.new-analysis-note-field textarea {
+    width: 100%;
+
+    min-height: 245px;
+    max-height: 360px;
+
+    resize: vertical;
+
+    box-sizing: border-box;
+
+    padding: 16px;
+
+    border: 1px solid var(--border);
+    border-radius: 11px;
+
+    outline: none;
+
+    background: var(--code-bg);
+
+    color: var(--text-h);
+
+    font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        monospace;
+
+    font-size: 14px;
+
+    line-height: 1.65;
+
+    transition: 0.2s ease;
+}
+
+
+.new-analysis-note-field textarea::placeholder {
+    color: var(--text);
+}
+
+
+.new-analysis-note-field textarea:focus {
+    border-color: var(--accent);
+
+    box-shadow: 0 0 0 3px var(--accent-bg);
+}
+
+
+/* =========================================================
+   NOTE FOOTER
+========================================================= */
+
+.new-analysis-note-footer {
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 7px;
+
+    color: var(--text);
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.new-analysis-error {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    margin-top: 16px;
+    padding: 11px 13px;
+
+    border: 1px solid var(--danger);
+    border-radius: 9px;
+
+    background: color-mix(in srgb, var(--danger) 12%, transparent);
+
+    color: var(--danger);
+
+    font-size: 12px;
+}
+
+
+.new-analysis-error span {
+    width: 18px;
+    height: 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: color-mix(in srgb, var(--danger) 20%, transparent);
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.new-analysis-actions {
+    display: flex;
+
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 12px;
+
+    margin-top: 24px;
+    padding-top: 22px;
+
+    border-top: 1px solid var(--border);
+}
+
+
+/* CANCEL */
+
+.new-analysis-cancel {
+    height: 48px;
+
+    padding: 0 22px;
+
+    border: 1px solid var(--border-strong);
+    border-radius: 10px;
+
+    background: transparent;
+
+    color: var(--text);
+
+    font-family: inherit;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.new-analysis-cancel:hover {
+    background: var(--code-bg);
+
+    border-color: var(--accent-border);
+
+    color: var(--text-h);
+}
+
+
+/* ANALYZE */
+
+.new-analysis-submit {
+    height: 48px;
+
+    padding: 0 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: var(--success);
+
+    color: #071211;
+
+    font-family: inherit;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    box-shadow: var(--shadow);
+
+    transition: 0.2s ease;
+}
+
+.new-analysis-submit span {
+    font-size: 18px;
+}
+
+.new-analysis-submit:hover {
+    filter: brightness(1.06);
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+.new-analysis-modal::-webkit-scrollbar {
+    width: 7px;
+}
+
+.new-analysis-modal::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.new-analysis-modal::-webkit-scrollbar-thumb {
+    background: var(--border-strong);
+
+    border-radius: 10px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .new-analysis-overlay {
+        padding: 15px;
+    }
+
+    .new-analysis-modal {
+        width: 100%;
+
+        max-height: 92vh;
+
+        padding: 30px 24px 24px;
+
+        border-radius: 16px;
+    }
+
+    .new-analysis-modal-header h1 {
+        font-size: 30px;
+    }
+
+    .new-analysis-fields {
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+    }
+
+    .new-analysis-note-field textarea {
+        min-height: 220px;
+    }
+
+    .new-analysis-actions {
+        flex-direction: column-reverse;
+
+        align-items: stretch;
+    }
+
+    .new-analysis-cancel,
+    .new-analysis-submit {
+        width: 100%;
+    }
+}

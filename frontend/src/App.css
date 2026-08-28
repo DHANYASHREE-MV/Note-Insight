@@ -1,0 +1,713 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: "Inter", sans-serif;
+  color: #f5f7ff;
+  background: #030712;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.auth-page {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 52px 24px 40px;
+
+  background:
+    radial-gradient(circle at 50% 38%,
+      rgba(15, 67, 130, 0.2),
+      transparent 32%),
+    linear-gradient(135deg,
+      #020712 0%,
+      #050b18 48%,
+      #02050c 100%);
+}
+
+/* --------------------------------
+   Background effects
+-------------------------------- */
+
+.glow {
+  position: absolute;
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(100px);
+  opacity: 0.2;
+}
+
+.glow-top-left {
+  top: -250px;
+  left: -200px;
+  background: #087cff;
+}
+
+.glow-bottom-right {
+  right: -240px;
+  bottom: -260px;
+  background: #0066ff;
+}
+
+.grid-pattern {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  opacity: 0.2;
+
+  background-image: radial-gradient(rgba(55, 160, 255, 0.8) 1px,
+      transparent 1px);
+
+  background-size: 20px 20px;
+}
+
+.grid-left {
+  left: 28px;
+  bottom: 28px;
+}
+
+.grid-right {
+  right: 28px;
+  top: 28px;
+}
+
+/* --------------------------------
+   Radar rings
+-------------------------------- */
+
+.radar {
+  position: absolute;
+  width: 430px;
+  height: 430px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.radar-left {
+  left: -220px;
+  top: 160px;
+}
+
+.radar-right {
+  right: -220px;
+  bottom: 70px;
+}
+
+.radar span {
+  position: absolute;
+  inset: 0;
+
+  border: 1px solid rgba(37, 135, 255, 0.25);
+  border-radius: 50%;
+}
+
+.radar span:nth-child(2) {
+  inset: 65px;
+}
+
+.radar span:nth-child(3) {
+  inset: 130px;
+}
+
+/* --------------------------------
+   Brand
+-------------------------------- */
+
+.brand {
+  position: relative;
+  z-index: 2;
+
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.brand-icon {
+  width: 52px;
+  height: 52px;
+
+  margin: 0 auto 12px;
+
+  color: #25bfff;
+
+  filter: drop-shadow(0 0 14px rgba(37, 191, 255, 0.45));
+}
+
+.brand-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.brand h1 {
+  margin: 0;
+
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: 4px;
+}
+
+.brand h1 span {
+  color: #24aaff;
+}
+
+.brand p {
+  margin: 8px 0 0;
+
+  color: #8d9ab2;
+  font-size: 14px;
+}
+
+/* --------------------------------
+   Side information
+-------------------------------- */
+
+.side-info {
+  position: absolute;
+  z-index: 1;
+
+  width: 180px;
+
+  text-align: center;
+  color: #8d9ab2;
+}
+
+.left-info {
+  left: 8%;
+  top: 44%;
+}
+
+.right-info {
+  right: 8%;
+  top: 44%;
+}
+
+.side-icon {
+  width: 72px;
+  height: 72px;
+
+  margin: 0 auto 16px;
+
+  color: #168cff;
+
+  filter: drop-shadow(0 0 15px rgba(22, 140, 255, 0.25));
+}
+
+.side-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.side-info h3 {
+  margin: 0 0 6px;
+
+  color: #dce5f5;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.side-info p {
+  margin: 0;
+
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* --------------------------------
+   Auth card
+-------------------------------- */
+
+.auth-card {
+  position: relative;
+  z-index: 3;
+
+  width: min(100%, 510px);
+
+  padding: 38px 42px;
+
+  border: 1px solid rgba(113, 147, 193, 0.28);
+  border-radius: 20px;
+
+  background:
+    linear-gradient(145deg,
+      rgba(21, 31, 47, 0.88),
+      rgba(7, 13, 24, 0.94));
+
+  box-shadow:
+    0 30px 90px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+  backdrop-filter: blur(20px);
+}
+
+.auth-card::before {
+  content: "";
+
+  position: absolute;
+  top: -1px;
+  left: 20%;
+  right: 20%;
+
+  height: 1px;
+
+  background: linear-gradient(90deg,
+      transparent,
+      #168cff,
+      transparent);
+
+  box-shadow: 0 0 18px rgba(22, 140, 255, 0.7);
+}
+
+.card-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.card-header h2 {
+  margin: 0 0 8px;
+
+  font-size: 27px;
+  font-weight: 600;
+}
+
+.card-header p {
+  margin: 0;
+
+  color: #8996ac;
+  font-size: 14px;
+}
+
+/* --------------------------------
+   Form
+-------------------------------- */
+
+.form-group {
+  margin-bottom: 22px;
+}
+
+.form-group label {
+  display: block;
+
+  margin-bottom: 9px;
+
+  color: #dce4f1;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.password-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.password-label label {
+  margin-bottom: 9px;
+}
+
+.forgot-button {
+  border: none;
+  background: transparent;
+
+  color: #299dff;
+  font-size: 12px;
+
+  margin-bottom: 9px;
+}
+
+.forgot-button:hover {
+  color: #65bcff;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.input-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+
+  width: 20px;
+  height: 20px;
+
+  transform: translateY(-50%);
+
+  color: #718099;
+
+  pointer-events: none;
+}
+
+.input-wrapper input {
+  width: 100%;
+  height: 54px;
+
+  padding: 0 46px;
+
+  border: 1px solid rgba(113, 135, 167, 0.38);
+  border-radius: 10px;
+
+  outline: none;
+
+  background: rgba(3, 8, 17, 0.55);
+
+  color: #f2f6ff;
+  font-size: 14px;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.input-wrapper input::placeholder {
+  color: #68758b;
+}
+
+.input-wrapper input:focus {
+  border-color: #219bff;
+
+  background: rgba(5, 14, 28, 0.8);
+
+  box-shadow:
+    0 0 0 3px rgba(33, 155, 255, 0.09),
+    0 0 22px rgba(33, 155, 255, 0.08);
+}
+
+.password-toggle {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  border: none;
+  background: transparent;
+
+  color: #718099;
+}
+
+.password-toggle:hover {
+  color: #b7c6dc;
+}
+
+/* --------------------------------
+   Buttons
+-------------------------------- */
+
+.primary-button {
+  width: 100%;
+  height: 54px;
+
+  margin-top: 4px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+
+  border: none;
+  border-radius: 10px;
+
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+
+  background: linear-gradient(100deg,
+      #18b9e8,
+      #2968ef);
+
+  box-shadow:
+    0 8px 25px rgba(24, 145, 255, 0.24);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.primary-button span {
+  font-size: 22px;
+  transition: transform 0.2s ease;
+}
+
+.primary-button:hover {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 12px 32px rgba(24, 145, 255, 0.35);
+}
+
+.primary-button:hover span {
+  transform: translateX(4px);
+}
+
+/* --------------------------------
+   Divider
+-------------------------------- */
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  margin: 27px 0;
+
+  color: #69768b;
+  font-size: 12px;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+
+  height: 1px;
+
+  background: rgba(108, 129, 159, 0.2);
+}
+
+/* --------------------------------
+   Google
+-------------------------------- */
+
+.google-button {
+  width: 100%;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+
+  border: 1px solid rgba(113, 135, 167, 0.3);
+  border-radius: 10px;
+
+  background: rgba(4, 10, 20, 0.5);
+
+  color: #dfe7f4;
+  font-size: 14px;
+  font-weight: 500;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.google-button:hover {
+  border-color: rgba(95, 157, 225, 0.5);
+  background: rgba(17, 28, 46, 0.7);
+}
+
+.google-letter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 22px;
+  height: 22px;
+
+  color: #4285f4;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+/* --------------------------------
+   Switch login/signup
+-------------------------------- */
+
+.switch-auth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+
+  margin-top: 26px;
+
+  color: #78869c;
+  font-size: 13px;
+}
+
+.switch-auth button {
+  border: none;
+  background: transparent;
+
+  color: #2ca8ff;
+  font-weight: 600;
+}
+
+.switch-auth button:hover {
+  color: #74c8ff;
+}
+
+/* --------------------------------
+   Security footer
+-------------------------------- */
+
+.security-footer {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-top: 25px;
+
+  color: #7c8ba1;
+}
+
+.security-check {
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(44, 156, 255, 0.4);
+  border-radius: 50%;
+
+  color: #2da4ff;
+  font-size: 15px;
+
+  background: rgba(15, 100, 180, 0.08);
+}
+
+.security-footer strong,
+.security-footer span {
+  display: block;
+}
+
+.security-footer strong {
+  margin-bottom: 3px;
+
+  color: #b9c6d8;
+  font-size: 12px;
+}
+
+.security-footer span {
+  font-size: 10px;
+}
+
+/* --------------------------------
+   Responsive
+-------------------------------- */
+
+@media (max-width: 1050px) {
+  .side-info {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .auth-page {
+    padding: 30px 16px;
+  }
+
+  .brand {
+    margin-bottom: 24px;
+  }
+
+  .brand h1 {
+    font-size: 27px;
+    letter-spacing: 3px;
+  }
+
+  .brand p {
+    font-size: 12px;
+  }
+
+  .auth-card {
+    padding: 30px 22px;
+    border-radius: 16px;
+  }
+
+  .card-header h2 {
+    font-size: 23px;
+  }
+
+  .security-footer {
+    max-width: 320px;
+  }
+}
+.logo-option-2 {
+  color: #28b9ff;
+
+  filter:
+    drop-shadow(0 0 8px rgba(40, 185, 255, 0.45)) drop-shadow(0 0 20px rgba(82, 83, 255, 0.18));
+
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
+}
+
+.logo-option-2:hover {
+  transform: translateY(-2px) scale(1.04);
+
+  filter:
+    drop-shadow(0 0 12px rgba(40, 185, 255, 0.65)) drop-shadow(0 0 28px rgba(82, 83, 255, 0.28));
+}
+/* --------------------------------
+   Option 2 side branding
+-------------------------------- */
+
+.side-logo {
+  width: 82px;
+  height: 82px;
+
+  color: #299cff;
+
+  filter:
+    drop-shadow(0 0 8px rgba(41, 156, 255, 0.5))
+    drop-shadow(0 0 22px rgba(82, 83, 255, 0.2));
+
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
+}
+
+.side-logo svg {
+  width: 100%;
+  height: 100%;
+}
+
+.side-logo:hover {
+  transform: translateY(-4px) scale(1.05);
+
+  filter:
+    drop-shadow(0 0 14px rgba(41, 156, 255, 0.7))
+    drop-shadow(0 0 30px rgba(82, 83, 255, 0.3));
+}
+
+/* Slight variation so the two sides don't look identical */
+.side-logo-left {
+  color: #3c9cff;
+}
+
+.side-logo-right {
+  color: #27c4ff;
+}

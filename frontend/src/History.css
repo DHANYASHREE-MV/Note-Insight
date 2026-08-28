@@ -1,0 +1,665 @@
+/* =========================================================
+   HISTORY PAGE
+   Uses the theme variables from index.css (--bg, --bg-card,
+   --text, --text-h, --border, --border-strong, --accent,
+   --accent-bg, --accent-border, --success, --warning, --danger,
+   --code-bg) so it follows html.theme-light / html.theme-dark
+   instead of being hardcoded dark.
+========================================================= */
+
+.history-page {
+    min-height: 100vh;
+    display: flex;
+    background: var(--bg);
+    color: var(--text);
+
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.history-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 250px;
+    padding: 28px 22px;
+
+    box-sizing: border-box;
+
+    background: var(--bg-card);
+    border-right: 1px solid var(--border);
+
+    display: flex;
+    flex-direction: column;
+
+    z-index: 10;
+
+    transition:
+        background-color 0.25s ease,
+        border-color 0.25s ease;
+}
+
+
+/* BRAND */
+
+.history-brand {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    margin-bottom: 48px;
+}
+
+.history-logo {
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: var(--accent-bg);
+    border: 1px solid var(--accent-border);
+
+    color: var(--accent);
+
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.history-brand strong {
+    display: block;
+
+    font-size: 14px;
+    letter-spacing: 1.5px;
+
+    color: var(--text-h);
+}
+
+.history-brand small {
+    display: block;
+
+    margin-top: 4px;
+
+    color: var(--text);
+    font-size: 12px;
+}
+
+
+/* NAVIGATION */
+
+.history-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.history-nav button {
+    width: 100%;
+
+    padding: 13px 14px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: transparent;
+
+    color: var(--text);
+
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    font-size: 14px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.history-nav button:hover {
+    background: var(--code-bg);
+    color: var(--text-h);
+}
+
+.history-nav-active {
+    background: var(--accent-bg) !important;
+    color: var(--accent) !important;
+}
+
+.history-nav button span {
+    width: 20px;
+
+    display: inline-flex;
+    justify-content: center;
+
+    font-size: 18px;
+}
+
+
+/* SIDEBAR BOTTOM */
+
+.history-sidebar-bottom {
+    margin-top: auto;
+}
+
+.history-private {
+    padding: 15px;
+
+    display: flex;
+    gap: 11px;
+
+    border-radius: 12px;
+
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+}
+
+.history-private>span {
+    color: var(--success);
+    font-size: 18px;
+}
+
+.history-private strong {
+    display: block;
+
+    font-size: 12px;
+    color: var(--text-h);
+}
+
+.history-private small {
+    display: block;
+
+    margin-top: 4px;
+
+    color: var(--text);
+    font-size: 11px;
+}
+
+.history-sidebar-bottom>button {
+    width: 100%;
+
+    margin-top: 18px;
+    padding: 10px;
+
+    border: none;
+
+    background: transparent;
+
+    color: var(--text);
+
+    text-align: left;
+
+    cursor: pointer;
+
+    font-size: 13px;
+}
+
+.history-sidebar-bottom>button:hover {
+    color: var(--text-h);
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
+
+.history-main {
+    width: calc(100% - 250px);
+
+    margin-left: 250px;
+
+    padding: 45px 55px;
+
+    box-sizing: border-box;
+}
+
+
+/* HEADER */
+
+.history-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    margin-bottom: 32px;
+}
+
+.history-eyebrow {
+    margin: 0 0 8px;
+
+    color: var(--accent);
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+.history-header h1 {
+    margin: 0;
+
+    color: var(--text-h);
+
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.history-header p {
+    margin: 8px 0 0;
+
+    color: var(--text);
+
+    font-size: 14px;
+}
+
+
+/* NEW ANALYSIS BUTTON */
+
+.history-new-button {
+    padding: 12px 18px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: var(--accent);
+
+    color: white;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.history-new-button:hover {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   TOOLBAR
+========================================================= */
+
+.history-toolbar {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 20px;
+}
+
+.history-search {
+    width: 420px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 12px 15px;
+
+    box-sizing: border-box;
+
+    background: var(--bg-card);
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+.history-search span {
+    color: var(--text);
+
+    font-size: 18px;
+}
+
+.history-search input {
+    width: 100%;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: var(--text-h);
+
+    font-size: 13px;
+}
+
+.history-search input::placeholder {
+    color: var(--text);
+}
+
+
+/* FILTER */
+
+.history-filter {
+    padding: 11px 15px;
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    background: var(--bg-card);
+
+    color: var(--text);
+
+    font-size: 13px;
+
+    cursor: pointer;
+}
+
+.history-filter:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.history-filter.active {
+    background: var(--accent-bg);
+
+    border-color: var(--accent-border);
+
+    color: var(--accent);
+}
+
+
+/* =========================================================
+   HISTORY CARD
+========================================================= */
+
+.history-card {
+    background: var(--bg-card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 15px;
+
+    overflow: hidden;
+}
+
+
+/* CARD HEADER */
+
+.history-card-header {
+    padding: 22px 26px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.history-card-header h2 {
+    margin: 0;
+
+    color: var(--text-h);
+
+    font-size: 17px;
+}
+
+.history-card-header p {
+    margin: 5px 0 0;
+
+    color: var(--text);
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.history-table {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+
+/* TABLE HEADER */
+
+.history-table-header {
+    display: grid;
+
+    grid-template-columns:
+        2fr 1.2fr 0.8fr 1.3fr 1.4fr 45px;
+
+    min-width: 850px;
+
+    padding: 15px 26px;
+
+    border-bottom: 1px solid var(--border);
+
+    color: var(--text);
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+
+/* ROW */
+
+.history-row {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        2fr 1.2fr 0.8fr 1.3fr 1.4fr 45px;
+
+    align-items: center;
+
+    min-width: 850px;
+
+    padding: 18px 26px;
+
+    box-sizing: border-box;
+
+    border: none;
+    border-bottom: 1px solid var(--border);
+
+    background: transparent;
+
+    color: var(--text-h);
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.history-row:last-child {
+    border-bottom: none;
+}
+
+.history-row:hover {
+    background: var(--code-bg);
+}
+
+
+/* PATIENT */
+
+.history-patient {
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+}
+
+.history-avatar {
+    width: 40px;
+    height: 40px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background: var(--accent-bg);
+
+    color: var(--accent);
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.history-patient strong {
+    display: block;
+
+    color: var(--text-h);
+
+    font-size: 13px;
+}
+
+.history-patient small {
+    display: block;
+
+    margin-top: 4px;
+
+    color: var(--text);
+
+    font-size: 11px;
+}
+
+
+/* STATUS */
+
+.history-good,
+.history-gaps,
+.history-reviewed,
+.history-pending {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    font-size: 12px;
+}
+
+.history-good,
+.history-reviewed {
+    color: var(--success);
+}
+
+.history-gaps,
+.history-pending {
+    color: var(--warning);
+}
+
+.history-good i,
+.history-gaps i,
+.history-reviewed i,
+.history-pending i {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: currentColor;
+}
+
+
+/* ARROW */
+
+.history-arrow {
+    color: var(--accent);
+
+    font-size: 19px;
+
+    transition: 0.2s ease;
+}
+
+.history-row:hover .history-arrow {
+    transform: translateX(3px);
+}
+
+
+/* EMPTY */
+
+.history-empty {
+    padding: 50px;
+
+    text-align: center;
+
+    color: var(--text);
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .history-sidebar {
+        width: 220px;
+    }
+
+    .history-main {
+        width: calc(100% - 220px);
+        margin-left: 220px;
+
+        padding: 35px 30px;
+    }
+}
+
+
+@media (max-width: 800px) {
+
+    .history-sidebar {
+        display: none;
+    }
+
+    .history-main {
+        width: 100%;
+        margin-left: 0;
+
+        padding: 25px 18px;
+    }
+
+    .history-header {
+        align-items: flex-start;
+        flex-direction: column;
+
+        gap: 18px;
+    }
+
+    .history-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .history-search {
+        width: 100%;
+    }
+
+    .history-filter {
+        width: fit-content;
+    }
+}

@@ -1,0 +1,180 @@
+/* =========================================================
+   PATIENTS PAGES (list + detail)
+   Shares the sidebar/table shell classes from History.css
+   (history-page, history-sidebar, history-main, history-card,
+   history-table, history-row, etc.) — these are page-specific
+   additions only: the patient card grid and the visit table
+   used on the patient detail view.
+========================================================= */
+
+.patients-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+}
+
+.patient-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    padding: 18px 20px;
+
+    border: 1px solid var(--border);
+    border-radius: 14px;
+
+    background: var(--bg-card);
+    color: var(--text-h);
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.patient-card:hover {
+    border-color: var(--accent-border);
+    background: var(--code-bg);
+}
+
+.patient-card-body {
+    flex: 1;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.patient-card-body strong {
+    color: var(--text-h);
+    font-size: 14px;
+}
+
+.patient-card-meta {
+    color: var(--text);
+    font-size: 12px;
+}
+
+.patient-card-contact {
+    color: var(--text);
+    font-size: 11px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.patient-card-stats {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+
+    flex-shrink: 0;
+
+    font-size: 12px;
+    color: var(--text);
+}
+
+
+/* ================================
+   PATIENT DETAIL HEADER
+================================ */
+
+.patient-detail-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    margin: 20px 0 28px;
+    padding: 22px 26px;
+
+    border: 1px solid var(--border);
+    border-radius: 15px;
+
+    background: var(--bg-card);
+}
+
+.history-avatar.large {
+    width: 60px;
+    height: 60px;
+
+    border-radius: 16px;
+
+    font-size: 16px;
+}
+
+.patient-detail-header h1 {
+    margin: 0;
+
+    color: var(--text-h);
+
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.patient-detail-header p {
+    margin: 4px 0 0;
+
+    color: var(--text);
+
+    font-size: 13px;
+}
+
+
+/* ================================
+   VISIT TABLE (patient detail)
+   Same visual language as history-table, one fewer column
+   since the patient identity is already shown in the header.
+================================ */
+
+.visit-table-header,
+.visit-row {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1.3fr 1.2fr 40px;
+
+    align-items: center;
+
+    min-width: 700px;
+
+    padding: 16px 26px;
+
+    box-sizing: border-box;
+}
+
+.visit-table-header {
+    border-bottom: 1px solid var(--border);
+
+    color: var(--text);
+
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.visit-row {
+    width: 100%;
+
+    border: none;
+    border-bottom: 1px solid var(--border);
+
+    background: transparent;
+    color: var(--text-h);
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.visit-row:last-child {
+    border-bottom: none;
+}
+
+.visit-row:hover {
+    background: var(--code-bg);
+}
