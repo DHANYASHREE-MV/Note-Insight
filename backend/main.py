@@ -1,4 +1,5 @@
 import os
+import json
 from typing import List
 
 from fastapi import FastAPI, HTTPException, Header
@@ -13,9 +14,9 @@ import firebase_admin
 from firebase_admin import credentials, auth, firestore
 
 
-# ---------------------------------------------------------
+# =========================================================
 # LOAD ENVIRONMENT VARIABLES
-# ---------------------------------------------------------
+# =========================================================
 
 load_dotenv()
 
@@ -23,67 +24,117 @@ GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 if not GEMINI_API_KEY:
     raise RuntimeError(
-        "GEMINI_API_KEY not found. Please add it to backend/.env"
+        "GEMINI_API_KEY not found. "
+        "Please add it to your environment variables."
     )
 
 
-# ---------------------------------------------------------
+# =========================================================
 # FIREBASE ADMIN INITIALIZATION
-# ---------------------------------------------------------
+# =========================================================
 
-FIREBASE_SERVICE_ACCOUNT_PATH = os.getenv(
-    "FIREBASE_SERVICE_ACCOUNT_PATH"
+# IMPORTANT:
+# On Render, we store the Firebase service-account JSON
+# directly in an environment variable.
+#
+# We DO NOT use credentials.Certificate(path)
+# because there is no Firebase JSON file on Render.
+
+FIREBASE_SERVICE_ACCOUNT_JSON = os.getenv(
+    "FIREBASE_SERVICE_ACCOUNT_JSON"
 )
 
-if not FIREBASE_SERVICE_ACCOUNT_PATH:
+if not FIREBASE_SERVICE_ACCOUNT_JSON:
     raise RuntimeError(
-        "FIREBASE_SERVICE_ACCOUNT_PATH not found. "
-        "Please add it to backend/.env"
+        "FIREBASE_SERVICE_ACCOUNT_JSON not found. "
+        "Please add it to your environment variables."
     )
 
 
 if not firebase_admin._apps:
 
-    cred = credentials.Certificate(
-        FIREBASE_SERVICE_ACCOUNT_PATH
-    )
+    try:
+        firebase_credentials = json.loads(
+            FIREBASE_SERVICE_ACCOUNT_JSON
+        )
 
-    firebase_admin.initialize_app(cred)
+        cred = credentials.Certificate(
+            firebase_credentials
+        )
+
+        firebase_admin.initialize_app(cred)
+
+    except json.JSONDecodeError:
+        raise RuntimeError(
+            "FIREBASE_SERVICE_ACCOUNT_JSON contains invalid JSON."
+        )
+
+    except Exception as e:
+        raise RuntimeError(
+            f"Firebase initialization failed: {str(e)}"
+        )
 
 
 db = firestore.client()
 
 
-# ---------------------------------------------------------
+# =========================================================
 # GEMINI CLIENT
-# ---------------------------------------------------------
+# =========================================================
 
-client = genai.Client(api_key=GEMINI_API_KEY)
+client = genai.Client(
+    api_key=GEMINI_API_KEY
+)
 
 MODEL_NAME = "gemini-3.5-flash-lite"
 
 
-# ---------------------------------------------------------
+# =========================================================
 # FASTAPI
-# ---------------------------------------------------------
+# =========================================================
 
-app = FastAPI(title="Note Insight API")
+app = FastAPI(
+    title="Note Insight API"
+)
+
+
+# =========================================================
+# CORS
+# =========================================================
+
+# Local development + Vercel deployment.
+#
+# FRONTEND_URL can be added in Render:
+#
+# FRONTEND_URL=https://your-vercel-app.vercel.app
+#
+# We also allow Vercel preview URLs using the regex below.
+
+FRONTEND_URL = os.getenv("FRONTEND_URL")
+
+allowed_origins = [
+    "http://localhost:5173",
+]
+
+if FRONTEND_URL:
+    allowed_origins.append(
+        FRONTEND_URL.rstrip("/")
+    )
 
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-    ],
+    allow_origins=allowed_origins,
+    allow_origin_regex=r"https://.*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 
-# ---------------------------------------------------------
+# =========================================================
 # REQUEST MODEL
-# ---------------------------------------------------------
+# =========================================================
 
 class NoteRequest(BaseModel):
 
@@ -93,9 +144,9 @@ class NoteRequest(BaseModel):
     )
 
 
-# ---------------------------------------------------------
+# =========================================================
 # GEMINI RESPONSE MODELS
-# ---------------------------------------------------------
+# =========================================================
 
 class Condition(BaseModel):
 
@@ -162,9 +213,9 @@ class AnalysisResult(BaseModel):
     )
 
 
-# ---------------------------------------------------------
+# =========================================================
 # FIREBASE AUTHENTICATION
-# ---------------------------------------------------------
+# =========================================================
 
 def verify_firebase_token(
     authorization: str | None
@@ -222,9 +273,9 @@ def verify_firebase_token(
         )
 
 
-# ---------------------------------------------------------
+# =========================================================
 # ROOT
-# ---------------------------------------------------------
+# =========================================================
 
 @app.get("/")
 def root():
@@ -235,9 +286,9 @@ def root():
     }
 
 
-# ---------------------------------------------------------
+# =========================================================
 # ANALYZE NOTE
-# ---------------------------------------------------------
+# =========================================================
 
 @app.post("/api/notes")
 def analyze_note(
@@ -256,6 +307,7 @@ def analyze_note(
     )
 
     user_uid = decoded_token.get("uid")
+
 
     if not user_uid:
 
@@ -363,7 +415,9 @@ Clinical note:
         )
 
 
-        # Gemini structured output
+        # -------------------------------------------------
+        # GEMINI STRUCTURED OUTPUT
+        # -------------------------------------------------
 
         if response.parsed:
 
@@ -396,12 +450,15 @@ Clinical note:
     # -----------------------------------------------------
 
     analysis_data = result.model_dump()
-        # -----------------------------------------------------
+
+
+    # -----------------------------------------------------
     # SAVE ANALYSIS TO FIRESTORE
     # -----------------------------------------------------
 
     analysis_id = None
     save_warning = None
+
 
     try:
 
@@ -413,6 +470,7 @@ Clinical note:
             .document()
         )
 
+
         analysis_ref.set({
             "user_uid": user_uid,
             "note": request.note,
@@ -421,7 +479,9 @@ Clinical note:
             "created_at": firestore.SERVER_TIMESTAMP
         })
 
+
         analysis_id = analysis_ref.id
+
 
     except Exception as e:
 
@@ -441,6 +501,7 @@ Clinical note:
     # -----------------------------------------------------
 
     return {
+
         "message": "Note analyzed successfully",
 
         "analysis_saved": analysis_id is not None,
@@ -457,5 +518,3 @@ Clinical note:
 
         "analysis": analysis_data
     }
-
-  
