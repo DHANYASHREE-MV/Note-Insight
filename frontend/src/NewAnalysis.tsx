@@ -7,7 +7,23 @@ interface NewAnalysisProps {
     onClose: () => void;
 }
 
+/*
+ * Backend URL
+ *
+ * In Vercel, add:
+ *
+ * VITE_API_URL=https://YOUR-RENDER-BACKEND.onrender.com
+ *
+ * The fallback below is useful while testing.
+ */
+
+const API_URL =
+    import.meta.env.VITE_API_URL ||
+    "https://YOUR-RENDER-BACKEND.onrender.com";
+
+
 function NewAnalysis({ onClose }: NewAnalysisProps) {
+
     const navigate = useNavigate();
 
     const [patientId, setPatientId] = useState("");
@@ -16,163 +32,277 @@ function NewAnalysis({ onClose }: NewAnalysisProps) {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
+
     const handleCreateAnalysis = async () => {
+
         setError("");
+
 
         // -----------------------------------------
         // VALIDATION
         // -----------------------------------------
 
         if (!patientId.trim()) {
-            setError("Please enter a patient ID.");
+
+            setError(
+                "Please enter a patient ID."
+            );
+
             return;
         }
+
 
         if (!visitDate) {
-            setError("Please select a visit date.");
+
+            setError(
+                "Please select a visit date."
+            );
+
             return;
         }
+
 
         if (!clinicalNote.trim()) {
-            setError("Please enter the clinical note.");
+
+            setError(
+                "Please enter the clinical note."
+            );
+
             return;
         }
 
-        const wordCount = clinicalNote.trim().split(/\s+/).length;
+
+        const wordCount =
+            clinicalNote
+                .trim()
+                .split(/\s+/)
+                .length;
+
 
         if (wordCount < 100) {
+
             setError(
                 `Clinical note must contain at least 100 words. Current count: ${wordCount}`
             );
+
             return;
         }
 
+
         if (wordCount > 3000) {
+
             setError(
                 `Clinical note must not exceed 3000 words. Current count: ${wordCount}`
             );
+
             return;
         }
+
 
         // -----------------------------------------
         // START ANALYSIS
         // -----------------------------------------
 
         try {
+
             setLoading(true);
+
 
             // -----------------------------------------
             // GET CURRENT FIREBASE USER
             // -----------------------------------------
 
             const auth = getAuth();
-            const currentUser = auth.currentUser;
+
+            const currentUser =
+                auth.currentUser;
+
 
             if (!currentUser) {
-                setError("Please log in before creating an analysis.");
+
+                setError(
+                    "Please log in before creating an analysis."
+                );
+
                 return;
             }
+
 
             // -----------------------------------------
             // GET FIREBASE ID TOKEN
             // -----------------------------------------
 
-            const idToken = await currentUser.getIdToken();
+            const idToken =
+                await currentUser.getIdToken();
+
 
             // -----------------------------------------
-            // SEND NOTE + AUTH TOKEN TO BACKEND
+            // BACKEND URL
             // -----------------------------------------
 
-            const response = await fetch(
-                "http://127.0.0.1:8000/api/notes",
-                {
-                    method: "POST",
+            const backendUrl =
+                `${API_URL.replace(/\/$/, "")}/api/notes`;
 
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${idToken}`,
-                    },
 
-                    body: JSON.stringify({
-                        note: clinicalNote.trim(),
-                    }),
-                }
+            console.log(
+                "Sending analysis request to:",
+                backendUrl
             );
 
-            // -------------------------------------
+
+            // -----------------------------------------
+            // SEND NOTE + AUTH TOKEN
+            // -----------------------------------------
+
+            const response =
+                await fetch(
+                    backendUrl,
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json",
+
+                            "Authorization":
+                                `Bearer ${idToken}`,
+                        },
+
+                        body: JSON.stringify({
+                            note:
+                                clinicalNote.trim(),
+                        }),
+                    }
+                );
+
+
+            // -----------------------------------------
             // BACKEND ERROR
-            // -------------------------------------
+            // -----------------------------------------
 
             if (!response.ok) {
+
                 let errorMessage =
                     "Unable to analyze the clinical note.";
 
+
                 try {
-                    const errorData = await response.json();
+
+                    const errorData =
+                        await response.json();
+
 
                     if (errorData.detail) {
-                        errorMessage = errorData.detail;
+
+                        errorMessage =
+                            errorData.detail;
                     }
+
                 } catch {
-                    // Keep default error message
+
+                    // Keep default error
                 }
 
-                throw new Error(errorMessage);
+
+                throw new Error(
+                    errorMessage
+                );
             }
 
-            // -------------------------------------
+
+            // -----------------------------------------
             // ANALYSIS RESULT
-            // -------------------------------------
+            // -----------------------------------------
 
-            const data = await response.json();
+            const data =
+                await response.json();
 
-            console.log("Gemini analysis result:", data);
 
-            // -------------------------------------
+            console.log(
+                "Gemini analysis result:",
+                data
+            );
+
+
+            // -----------------------------------------
+            // CHECK ANALYSIS
+            // -----------------------------------------
+
+            if (!data.analysis) {
+
+                throw new Error(
+                    "The backend returned no analysis result."
+                );
+            }
+
+
+            // -----------------------------------------
             // SAVE ANALYSIS RESULT
-            // -------------------------------------
+            // -----------------------------------------
 
             sessionStorage.setItem(
                 "analysisResult",
-                JSON.stringify(data.analysis)
+                JSON.stringify(
+                    data.analysis
+                )
             );
+
 
             sessionStorage.setItem(
                 "clinicalNote",
                 clinicalNote.trim()
             );
 
+
             sessionStorage.setItem(
                 "patientId",
                 patientId.trim()
             );
+
 
             sessionStorage.setItem(
                 "visitDate",
                 visitDate
             );
 
-            // -------------------------------------
+
+            // -----------------------------------------
             // CLOSE MODAL
-            // -------------------------------------
+            // -----------------------------------------
 
             onClose();
 
-            // -------------------------------------
-            // GO TO REVIEW PAGE
-            // -------------------------------------
 
-            navigate("/analysis-review", {
-                state: {
-                    patientId: patientId.trim(),
-                    visitDate,
-                    clinicalNote: clinicalNote.trim(),
-                    analysis: data.analysis,
-                },
-            });
+            // -----------------------------------------
+            // GO TO REVIEW PAGE
+            // -----------------------------------------
+
+            navigate(
+                "/analysis-review",
+                {
+                    state: {
+                        patientId:
+                            patientId.trim(),
+
+                        visitDate,
+
+                        clinicalNote:
+                            clinicalNote.trim(),
+
+                        analysis:
+                            data.analysis,
+                    },
+                }
+            );
+
 
         } catch (err) {
-            console.error("Analysis error:", err);
+
+            console.error(
+                "Analysis error:",
+                err
+            );
+
 
             setError(
                 err instanceof Error
@@ -181,23 +311,32 @@ function NewAnalysis({ onClose }: NewAnalysisProps) {
             );
 
         } finally {
+
             setLoading(false);
         }
     };
 
+
     return (
+
         <div className="new-analysis-overlay">
 
             {/* BACKGROUND OVERLAY */}
 
             <div
                 className="new-analysis-backdrop"
-                onClick={loading ? undefined : onClose}
+                onClick={
+                    loading
+                        ? undefined
+                        : onClose
+                }
             />
+
 
             {/* MODAL */}
 
             <div className="new-analysis-modal">
+
 
                 {/* CLOSE BUTTON */}
 
@@ -211,158 +350,151 @@ function NewAnalysis({ onClose }: NewAnalysisProps) {
                     ×
                 </button>
 
-                {/* MODAL HEADER */}
 
-                <div className="new-analysis-modal-header">
+                {/* HEADER */}
 
-                    <p className="new-analysis-eyebrow">
-                        CLINICAL WORKSPACE
-                    </p>
+                <div className="new-analysis-header">
 
-                    <h1>
-                        New note
-                    </h1>
+                    <h2>
+                        New Analysis
+                    </h2>
 
-                    <p className="new-analysis-description">
-                        Paste the free-text note. No real patient identifiers —
-                        use a pseudonym or internal ID.
+                    <p>
+                        Enter the patient information
+                        and clinical note to begin
+                        analysis.
                     </p>
 
                 </div>
+
 
                 {/* FORM */}
 
                 <div className="new-analysis-form">
 
-                    {/* PATIENT + DATE */}
 
-                    <div className="new-analysis-fields">
+                    {/* PATIENT ID */}
 
-                        <div className="new-analysis-field">
+                    <div className="new-analysis-field">
 
-                            <label htmlFor="patientId">
-                                Patient pseudonym / internal ID
-                            </label>
+                        <label htmlFor="patient-id">
+                            Patient ID
+                        </label>
 
-                            <input
-                                id="patientId"
-                                type="text"
-                                value={patientId}
-                                placeholder="PT-1042"
-                                disabled={loading}
-                                onChange={(e) => {
-                                    setPatientId(e.target.value);
-                                    setError("");
-                                }}
-                            />
-
-                        </div>
-
-                        <div className="new-analysis-field">
-
-                            <label htmlFor="visitDate">
-                                Visit date
-                            </label>
-
-                            <input
-                                id="visitDate"
-                                type="date"
-                                value={visitDate}
-                                disabled={loading}
-                                onChange={(e) => {
-                                    setVisitDate(e.target.value);
-                                    setError("");
-                                }}
-                            />
-
-                        </div>
+                        <input
+                            id="patient-id"
+                            type="text"
+                            value={patientId}
+                            onChange={(e) =>
+                                setPatientId(
+                                    e.target.value
+                                )
+                            }
+                            placeholder="Enter patient ID"
+                            disabled={loading}
+                        />
 
                     </div>
+
+
+                    {/* VISIT DATE */}
+
+                    <div className="new-analysis-field">
+
+                        <label htmlFor="visit-date">
+                            Visit Date
+                        </label>
+
+                        <input
+                            id="visit-date"
+                            type="date"
+                            value={visitDate}
+                            onChange={(e) =>
+                                setVisitDate(
+                                    e.target.value
+                                )
+                            }
+                            disabled={loading}
+                        />
+
+                    </div>
+
 
                     {/* CLINICAL NOTE */}
 
-                    <div className="new-analysis-note-field">
+                    <div className="new-analysis-field">
 
-                        <label htmlFor="clinicalNote">
-                            Clinical note
+                        <label htmlFor="clinical-note">
+                            Clinical Note
                         </label>
 
                         <textarea
-                            id="clinicalNote"
+                            id="clinical-note"
                             value={clinicalNote}
-                            maxLength={10000}
+                            onChange={(e) =>
+                                setClinicalNote(
+                                    e.target.value
+                                )
+                            }
+                            placeholder="Enter the clinical note..."
+                            rows={12}
                             disabled={loading}
-                            placeholder="Paste or type the clinical note here..."
-                            onChange={(e) => {
-                                setClinicalNote(e.target.value);
-                                setError("");
-                            }}
                         />
 
-                        <div className="new-analysis-note-footer">
+                        <div className="word-count">
 
-                            <span>
-                                {clinicalNote.trim()
-                                    ? clinicalNote.trim().split(/\s+/).length
-                                    : 0}{" "}
-                                words
-                            </span>
+                            {
+                                clinicalNote
+                                    .trim()
+                                    ? clinicalNote
+                                        .trim()
+                                        .split(/\s+/)
+                                        .length
+                                    : 0
+                            }
 
-                            <span>
-                                {clinicalNote.length}/10000
-                            </span>
+                            {" "}words
+
+                            {" • "}
+
+                            Minimum 100 words
 
                         </div>
 
                     </div>
+
 
                     {/* ERROR */}
 
                     {error && (
-                        <div className="new-analysis-error">
 
-                            <span>!</span>
-
+                        <div
+                            className="new-analysis-error"
+                            role="alert"
+                        >
                             {error}
-
                         </div>
+
                     )}
 
-                    {/* ACTIONS */}
 
-                    <div className="new-analysis-actions">
+                    {/* BUTTON */}
 
-                        <button
-                            type="button"
-                            className="new-analysis-cancel"
-                            onClick={onClose}
-                            disabled={loading}
-                        >
-                            Cancel
-                        </button>
+                    <button
+                        type="button"
+                        className="new-analysis-submit"
+                        onClick={
+                            handleCreateAnalysis
+                        }
+                        disabled={loading}
+                    >
 
-                        <button
-                            type="button"
-                            className="new-analysis-submit"
-                            onClick={handleCreateAnalysis}
-                            disabled={loading}
-                        >
+                        {loading
+                            ? "Analyzing..."
+                            : "Analyze Note"
+                        }
 
-                            {loading ? (
-                                <>
-                                    <span>⏳</span>
-                                    Analyzing...
-                                </>
-                            ) : (
-                                <>
-                                    <span>✧</span>
-                                    Analyze note
-                                </>
-                            )}
-
-                        </button>
-
-                    </div>
+                    </button>
 
                 </div>
 
@@ -371,5 +503,6 @@ function NewAnalysis({ onClose }: NewAnalysisProps) {
         </div>
     );
 }
+
 
 export default NewAnalysis;
