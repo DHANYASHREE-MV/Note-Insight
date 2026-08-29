@@ -33,6 +33,8 @@ import {
    ========================================================= */
 
 function Login() {
+  const navigate = useNavigate();
+
   const [isSignUp, setIsSignUp] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -92,7 +94,7 @@ function Login() {
           "Signed in successfully!"
         );
 
-        window.location.href = "/dashboard";
+        navigate("/dashboard");
       }
 
     } catch (error: any) {
