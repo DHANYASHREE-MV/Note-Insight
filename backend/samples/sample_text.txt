@@ -1,0 +1,45 @@
+SYNTHETIC SAMPLE — FOR DEMONSTRATION ONLY - 1
+NO REAL PATIENT DATA
+
+A 54-year-old patient presents with a three-week history of intermittent
+lower back pain that worsens after prolonged sitting. The patient reports
+morning stiffness lasting approximately 20 minutes. No recent trauma is
+reported. The patient denies fever, numbness, or bowel and bladder changes.
+
+Physical examination shows mild tenderness over the lower lumbar region.
+Range of motion is mildly reduced due to discomfort. Strength and sensation
+are intact in both lower extremities.
+
+The patient was advised to avoid activities that significantly increase pain,
+maintain appropriate activity as tolerated, and follow up if symptoms worsen
+or mobility becomes substantially limited.
+
+
+SYNTHETIC SAMPLE — FOR DEMONSTRATION ONLY -- 2
+NO REAL PATIENT DATA
+
+A 42-year-old patient reports increased thirst and frequent urination over
+the past month. The patient also reports increased fatigue during the
+afternoon. There is no reported fever, abdominal pain, or recent infection.
+
+Vital signs are within the normal range. The patient reports a family
+history of type 2 diabetes. Laboratory testing has been requested to further
+evaluate the symptoms, including fasting blood glucose and HbA1c.
+
+The patient was advised to maintain adequate hydration and return for
+follow-up after the laboratory results are available.
+
+
+
+SYNTHETIC SAMPLE — FOR DEMONSTRATION ONLY -- 3
+NO REAL PATIENT DATA
+
+A 29-year-old patient presents with a five-day history of persistent cough
+and nasal congestion. The patient reports mild fatigue and occasional
+headache. No shortness of breath or chest pain is reported.
+
+Temperature is normal. Respiratory examination reveals clear breath sounds
+bilaterally. No significant abnormal findings are documented.
+
+The patient was advised to rest, maintain adequate fluid intake, and return
+for reassessment if symptoms worsen or breathing difficulties develop.
